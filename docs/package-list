@@ -1,0 +1,7 @@
+com.jingxi.smartlife.pad.sdk.doorAccess
+com.jingxi.smartlife.pad.sdk.doorAccess.base
+com.jingxi.smartlife.pad.sdk.doorAccess.base.Observers
+com.jingxi.smartlife.pad.sdk.doorAccess.base.bean
+com.jingxi.smartlife.pad.sdk.doorAccess.base.orm
+com.jingxi.smartlife.pad.sdk.doorAccess.base.ui
+com.jingxi.smartlife.pad.sdk.doorAccess.base.utils
