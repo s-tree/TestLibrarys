@@ -1,0 +1,191 @@
+<com.jingxi.smartlife.pad.sdk.neighbor.ui.views.bgabadge.BGARelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_cv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clipChildren="false"
+    android:focusable="true"
+    app:badge_horizontalMargin="@dimen/dp_26"
+    app:badge_verticalMargin="@dimen/dp_26">
+
+    <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.RoundImageView
+        android:id="@+id/nickname_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="19dp"
+        android:scaleType="center"
+        app:borderColor="@color/color_gary_e9e9e9"
+        app:borderThickness="@dimen/dp_1" />
+
+    <TextView
+        android:id="@+id/nickname_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/nickname_img"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:textColor="@color/color_split_line_252525"
+        android:textSize="20sp"
+        tools:text="张三之家" />
+
+    <TextView
+        android:id="@+id/create_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/nickname_tv"
+        android:layout_below="@+id/nickname_tv"
+        android:layout_marginTop="9dp"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:textColor="@color/gary_text_tis"
+        android:textSize="16sp"
+        tools:text="6小时前" />
+
+    <TextView
+        android:id="@+id/content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nickname_img"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginStart="35dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/color_split_line_252525"
+        android:textSize="20sp"
+        tools:text="6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时前" />
+
+    <RelativeLayout
+        android:id="@+id/statu_rl_price"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:layout_below="@id/content_tv"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginEnd="37dp"
+        android:layout_marginStart="35dp"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/statu_tv_originalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:textColor="@color/color_gary_999"
+            android:textSize="@dimen/sp_16"
+            tools:text="原价" />
+
+        <TextView
+            android:id="@+id/statu_tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="bottom"
+            android:textColor="@color/ffff0000"
+            android:textSize="@dimen/sp_16"
+            tools:text="现价" />
+    </RelativeLayout>
+
+    <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.NineGridView
+        android:id="@+id/ninegridview_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/statu_rl_price"
+        android:layout_marginEnd="@dimen/dp_35"
+        android:layout_marginStart="@dimen/dp_35"
+        android:paddingBottom="25dp" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ninegridview_img"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="@dimen/dp_5"
+        app:cardElevation="0dp">
+
+        <TextView
+            android:id="@+id/sort_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp_3"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"/>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/comment_counts_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/ninegridview_img"
+        android:layout_marginEnd="25dp"
+        android:drawablePadding="8dp"
+        android:drawableStart="@mipmap/neighbor_icon_comment"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="10dp"
+        tools:text="34" />
+
+    <TextView
+        android:id="@+id/left_favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/comment_counts_tv"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_toStartOf="@id/comment_counts_tv"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        tools:drawableStart="@mipmap/neighbor_icon_zan"
+        tools:text="34" />
+
+    <TextView
+        android:id="@+id/delete_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/cardView"
+        android:layout_marginEnd="20dp"
+        android:layout_toEndOf="@id/cardView"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_20"
+        android:paddingStart="@dimen/dp_26"
+        android:paddingTop="@dimen/dp_3"
+        android:text="@string/delete"
+        android:textColor="@color/ff4483f8"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_split_line_dedede" />
+
+    <ImageView
+        android:id="@+id/neighbor_arrow"
+        android:layout_width="@dimen/dp_22"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/create_time_tv"
+        android:layout_marginEnd="@dimen/_dp_22"
+        android:scaleType="fitStart"
+        android:src="@mipmap/neighbor_arrow"
+        android:visibility="visible" />
+
+</com.jingxi.smartlife.pad.sdk.neighbor.ui.views.bgabadge.BGARelativeLayout>

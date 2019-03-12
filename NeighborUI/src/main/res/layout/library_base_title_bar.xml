@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/currency_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_54"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ViewStub
+        android:id="@+id/leftView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_54" />
+
+    <ViewStub
+        android:id="@+id/centerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_54" />
+
+    <TextView
+        android:id="@+id/currency_close"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_54"
+        android:layout_alignParentEnd="true"
+        android:drawablePadding="@dimen/dp_11"
+        android:drawableStart="@mipmap/library_back"
+        android:gravity="center"
+        android:paddingEnd="@dimen/dp_30"
+        android:paddingStart="@dimen/dp_10"
+        android:textColor="@color/ff323232"
+        android:textSize="@dimen/sp_24"
+        tools:text="@string/back" />
+
+</RelativeLayout>

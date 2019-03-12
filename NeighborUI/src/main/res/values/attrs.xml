@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundImageView">
+        <attr name="borderOutsideColor" format="color" />
+        <attr name="borderColor" format="color" />
+        <attr name="borderThickness" format="dimension" />
+    </declare-styleable>
+    
+    <declare-styleable name="NineGridView">
+        <attr name="ngv_singleImageSize" format="dimension" />
+        <attr name="ngv_singleImageRatio" format="float" />
+        <attr name="ngv_gridSpacing" format="dimension" />
+        <attr name="ngv_maxSize" format="integer" />
+        <attr name="ngv_mode" format="enum">
+            <enum name="fill" value="0" />
+            <enum name="grid" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="MultiStyleTextView">
+        <attr name="color1" format="color|integer|reference" />
+        <attr name="color2" format="color|integer|reference" />
+        <attr name="color3" format="color|integer|reference" />
+        <attr name="color4" format="color|integer|reference" />
+        <attr name="color5" format="color|integer|reference" />
+        <attr name="color6" format="color|integer|reference" />
+        <attr name="size1" format="dimension" />
+        <attr name="size2" format="dimension" />
+        <attr name="size3" format="dimension" />
+        <attr name="format" format="string" />
+    </declare-styleable>
+    <declare-styleable name="BGABadgeView">
+        <!-- 徽章背景色 -->
+        <attr name="badge_bgColor" format="reference|color" />
+        <!-- 徽章文本的颜色 -->
+        <attr name="badge_textColor" format="reference|color" />
+        <!-- 徽章文本字体大小 -->
+        <attr name="badge_textSize" format="reference|dimension" />
+        <!-- 徽章背景与宿主控件上下边缘间距离 -->
+        <attr name="badge_verticalMargin" format="reference|dimension" />
+        <!-- 徽章背景与宿主控件左右边缘间距离 -->
+        <attr name="badge_horizontalMargin" format="reference|dimension" />
+        <!-- 徽章文本边缘与徽章背景边缘间的距离 -->
+        <attr name="badge_padding" format="reference|dimension" />
+        <!-- 徽章在宿主控件中的位置 -->
+        <attr name="badge_gravity" format="enum">
+            <enum name="rightTop" value="0" />
+            <enum name="rightCenter" value="1" />
+            <enum name="rightBottom" value="2" />
+        </attr>
+        <!-- 是否可以拖拽删除徽章 -->
+        <attr name="badge_dragable" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="HeaderLinearLayout">
+        <attr name="hvp_topOffset" format="dimension" />
+    </declare-styleable>
+
+    <style name="TabLayoutTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">@dimen/sp_23</item>
+    </style>
+    <declare-styleable name="CurrencyBaseTitleBar">
+        <attr name="leftView" format="reference" />
+        <attr name="centerView" format="reference" />
+        <attr name="backPicture" format="reference" />
+        <attr name="backText" format="string" />
+        <attr name="currencyBackground" format="integer" />
+        <attr name="backTextColor" format="color"/>
+    </declare-styleable>
+    <declare-styleable name="CurrencyTitleBarView">
+        <attr name="centerText" format="string" />
+        <attr name="centerTextColor" format="color" />
+        <attr name="leftVisibility" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CurrencyEasyTitleBar">
+        <attr name="leftSrc" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="EasySwipeMenuLayout">
+        <attr name="leftMenuView" format="reference" />
+        <attr name="rightMenuView" format="reference" />
+        <attr name="contentView" format="reference" />
+        <attr name="canRightSwipe" format="boolean" />
+        <attr name="canLeftSwipe" format="boolean" />
+        <attr name="fraction" format="float" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fff2f2f2"
+    android:orientation="vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+
+    <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.CurrencyEasyTitleBar
+        android:id="@+id/ctb_release"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backText="@string/back"
+        app:currencyBackground="@color/white"
+        app:leftVisibility="false" />
+
+    <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.MyScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dp_110">
+
+            <RelativeLayout
+                android:id="@+id/rl_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.MyEditText
+                    android:id="@+id/et_releaseContent"
+                    android:layout_width="@dimen/dp_767"
+                    android:layout_height="@dimen/dp_200"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:background="@color/white"
+                    android:gravity="top|start"
+                    android:hint="@string/introduceToNeighbors"
+                    android:lines="5"
+                    android:maxLength="500"
+                    android:paddingBottom="@dimen/dp_60"
+                    android:paddingEnd="@dimen/dp_21"
+                    android:paddingStart="@dimen/dp_24"
+                    android:paddingTop="@dimen/dp_20"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/ff323232"
+                    android:textSize="@dimen/sp_20" />
+
+                <TextView
+                    android:id="@+id/tv_inputSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/et_releaseContent"
+                    android:layout_alignEnd="@+id/et_releaseContent"
+                    android:layout_marginBottom="@dimen/dp_18"
+                    android:layout_marginEnd="@dimen/dp_21"
+                    android:textColor="@color/ff919191"
+                    android:textSize="@dimen/sp_18"
+                    tools:text="0/500" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_deadlineTime"
+                android:layout_width="@dimen/dp_767"
+                android:layout_height="@dimen/dp_70"
+                android:layout_below="@+id/rl_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="@color/white"
+                >
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_deadline"
+                    android:layout_width="@dimen/dp_22"
+                    android:layout_height="@dimen/dp_22"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:src="@mipmap/neighbor_post_time" />
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:layout_toEndOf="@+id/iv_deadline"
+                    android:text="@string/deadlineTime"
+                    android:textColor="@color/ff323232"
+                    android:textSize="@dimen/sp_20" />
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_alignParentEnd="true"
+                    android:src="@mipmap/neighbor_choice" />
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_deadlineTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_toStartOf="@+id/iv_choice"
+                    android:textColor="@color/ff919191"
+                    android:textSize="@dimen/sp_20"
+                    tools:text="2017/08/31 17:00" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_sellPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dp_767"
+                    android:layout_height="@dimen/dp_70"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/iv_originalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:src="@mipmap/neighbor_post_price" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:layout_toEndOf="@+id/iv_originalPrice"
+                        android:text="@string/old_price"
+                        android:textColor="@color/ff323232"
+                        android:textSize="@dimen/sp_20" />
+
+                    <TextView
+                        android:id="@+id/tv_RMB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:text="@string/RMB"
+                        android:textColor="@color/ff323232"
+                        android:textSize="@dimen/sp_20" />
+
+                    <EditText
+                        android:id="@+id/et_originalPrice"
+                        android:layout_width="@dimen/dp_160"
+                        android:layout_height="@dimen/dp_30"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_2"
+                        android:layout_toStartOf="@+id/tv_RMB"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="end|center_vertical"
+                        android:hint="@string/inputOriginalPrice"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:paddingEnd="@dimen/dp_5" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dp_767"
+                    android:layout_height="@dimen/dp_70"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/iv_presentPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:src="@mipmap/neighbor_post_price" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:layout_toEndOf="@+id/iv_presentPrice"
+                        android:text="@string/now_pirce"
+                        android:textColor="@color/ff323232"
+                        android:textSize="@dimen/sp_20" />
+
+                    <TextView
+                        android:id="@+id/tv_RMB2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:text="@string/RMB"
+                        android:textColor="@color/ff323232"
+                        android:textSize="@dimen/sp_20" />
+
+                    <EditText
+                        android:id="@+id/et_presentPrice"
+                        android:layout_width="@dimen/dp_160"
+                        android:layout_height="@dimen/dp_30"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_2"
+                        android:layout_toStartOf="@+id/tv_RMB2"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:gravity="end|center_vertical"
+                        android:hint="@string/inputPresentPrice"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:paddingEnd="@dimen/dp_5" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.FlowTagLayout
+                android:id="@+id/ftl_addPhoto"
+                android:layout_width="@dimen/dp_793"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_12">
+
+                <ImageView
+                    android:id="@+id/iv_addPhoto"
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_120"
+                    android:layout_marginStart="@dimen/dp_13"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:contentDescription="@string/img_icon"
+                    android:src="@mipmap/neighbor_add_photo" />
+            </com.jingxi.smartlife.pad.sdk.neighbor.ui.views.FlowTagLayout>
+
+            <TextView
+                android:id="@+id/tv_release"
+                android:layout_width="@dimen/dp_767"
+                android:layout_height="@dimen/dp_54"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_42"
+                android:background="@drawable/selector_release_bg"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="@string/release"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20" />
+        </LinearLayout>
+    </com.jingxi.smartlife.pad.sdk.neighbor.ui.views.MyScrollView>>
+</LinearLayout>
+

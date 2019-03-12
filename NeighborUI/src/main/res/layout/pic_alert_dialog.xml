@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/btn_take_photo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:textAllCaps="false"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_takephoto_top"
+            android:text="@string/takePhoto"
+            android:textColor="@color/color_ff4483f8"
+            android:textSize="@dimen/sp_24" />
+
+        <Button
+            android:id="@+id/btn_pick_photo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:textAllCaps="false"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_takephoto_bottom"
+            android:text="@string/chooseFromAlbum"
+            android:textColor="@color/color_ff4483f8"
+            android:textSize="@dimen/sp_24"/>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:textAllCaps="false"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_takephoto"
+            android:text="@string/cancel"
+            android:textSize="@dimen/sp_24"
+            />
+    </LinearLayout>
+</RelativeLayout>
+

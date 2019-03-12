@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/neighborNotice"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.RoundImageView
+        android:id="@+id/replyHeadImage"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginStart="@dimen/dp_27"
+        android:layout_marginTop="@dimen/dp_36"
+        app:borderColor="@color/transparent"
+        tools:src="@mipmap/mrtx" />
+
+    <TextView
+        android:id="@+id/replyName"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_29"
+        android:layout_alignTop="@+id/replyHeadImage"
+        android:layout_marginStart="19dp"
+        android:layout_toEndOf="@+id/replyHeadImage"
+        android:gravity="bottom"
+        android:textColor="@color/ff323232"
+        android:textSize="@dimen/sp_20"
+        tools:text="阿尔卑斯" />
+
+    <TextView
+        android:id="@+id/replyTime"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_20"
+        android:layout_alignBottom="@id/replyHeadImage"
+        android:layout_alignStart="@id/replyName"
+        android:layout_below="@id/replyName"
+        android:layout_marginTop="@dimen/dp_7"
+        android:gravity="top"
+        android:textColor="@color/ff919191"
+        android:textSize="@dimen/sp_16"
+        tools:text="08-07 14:35" />
+
+    <TextView
+        android:id="@+id/reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/replyName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp"
+        android:padding="@dimen/dp_5"
+        android:text="@string/reply"
+        android:textColor="@color/ff4483f8"
+        android:textSize="@dimen/sp_20" />
+
+    <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.MultiStyleTextView
+        android:id="@+id/replyContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/replyHeadImage"
+        android:layout_marginEnd="@dimen/dp_27"
+        android:layout_marginStart="@dimen/dp_27"
+        android:layout_marginTop="@dimen/dp_18"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="@color/ff323232"
+        android:textSize="@dimen/sp_20"
+        app:color1="@color/ff4483f8"
+        tools:text="回复了//#@1你//:请问，是上海路那边的学校吗，东校区还是西校区呢？请问，是上海路那边的学校吗，东校区还是西校区呢？请问，是上海路那边的学校吗，东校区还是西校区呢？请问，是上海路那边的学校吗，东校区还是西校区呢？" />
+
+    <RelativeLayout
+        android:id="@+id/rl_boardContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_120"
+        android:layout_alignEnd="@id/replyContent"
+        android:layout_alignStart="@id/replyContent"
+        android:layout_below="@id/replyContent"
+        android:background="@color/fff8f8f8">
+
+        <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.RoundImageView
+            android:id="@+id/boardHeadImage"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginStart="@dimen/dp_27"
+            android:layout_marginTop="@dimen/dp_16"
+            app:borderColor="@color/transparent"
+            tools:src="@mipmap/mrtx" />
+
+        <TextView
+            android:id="@+id/boardName"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_29"
+            android:layout_alignTop="@id/boardHeadImage"
+            android:layout_marginStart="@dimen/dp_18"
+            android:layout_toEndOf="@id/boardHeadImage"
+            android:gravity="bottom"
+            android:textColor="@color/ff323232"
+            android:textSize="@dimen/sp_20"
+            tools:text="小饼干" />
+
+        <TextView
+            android:id="@+id/boardTime"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignBottom="@id/boardHeadImage"
+            android:layout_alignStart="@id/boardName"
+            android:layout_below="@id/boardName"
+            android:layout_marginTop="@dimen/dp_3"
+            android:gravity="bottom"
+            android:textColor="@color/ff919191"
+            android:textSize="@dimen/sp_16"
+            tools:text="08-07 14:35" />
+
+        <ImageView
+            android:id="@+id/boardImage"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            android:layout_alignParentEnd="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            tools:src="@mipmap/mrtx" />
+
+        <TextView
+            android:id="@+id/boardContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/boardHeadImage"
+            android:layout_marginBottom="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_24"
+            android:layout_marginStart="@dimen/dp_24"
+            android:layout_toStartOf="@id/boardImage"
+            android:ellipsize="end"
+            android:gravity="bottom"
+            android:maxLines="1"
+            android:textColor="@color/ff323232"
+            android:textSize="@dimen/sp_20"
+            tools:text="刚路过附近的小学，已经开始招生了，小区的爸爸妈妈可以去报名了！" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_alignEnd="@+id/rl_boardContent"
+        android:layout_alignStart="@+id/rl_boardContent"
+        android:layout_below="@+id/rl_boardContent"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@color/ffe9e9e9" />
+</RelativeLayout>

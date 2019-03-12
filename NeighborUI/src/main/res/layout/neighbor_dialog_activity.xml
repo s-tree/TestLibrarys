@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_29"
+        android:text="@string/registration_information"
+        android:textColor="@color/ff323232"
+        android:textSize="@dimen/sp_24" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_410"
+        android:layout_height="@dimen/dp_54"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@drawable/neighbor_activity_bg"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/neighborName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_16"
+            android:background="@null"
+            android:hint="@string/registration_name"
+            android:maxLength="10"
+            android:textColorHint="@color/ff919191"
+            android:textSize="@dimen/sp_20" />
+
+        <ImageView
+            android:id="@+id/cleanName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingStart="@dimen/dp_16"
+            android:scaleType="center"
+            android:src="@mipmap/neighbor_clean"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_410"
+        android:layout_height="@dimen/dp_54"
+        android:layout_marginTop="@dimen/dp_26"
+        android:background="@drawable/neighbor_activity_bg"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/neighborPhone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_16"
+            android:background="@null"
+            android:hint="@string/registration_phone"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textColorHint="@color/ff919191"
+            android:textSize="@dimen/sp_20" />
+
+        <ImageView
+            android:id="@+id/cleanPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingStart="@dimen/dp_16"
+            android:scaleType="center"
+            android:src="@mipmap/neighbor_clean"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/neighborAdress"
+        android:layout_width="@dimen/dp_410"
+        android:layout_height="@dimen/dp_54"
+        android:layout_marginTop="@dimen/dp_26"
+        android:background="@drawable/neighbor_activity_adress"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:lines="1"
+        android:paddingEnd="@dimen/dp_16"
+        android:paddingStart="@dimen/dp_16"
+        android:textColor="@color/ff919191"
+        android:textSize="@dimen/sp_20"
+        tools:text="平板所在地址平板所在地址平板所在地址平板所在地址" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_42"
+        android:background="@color/color_gary_e9e9e9" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/neighborBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="5"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/ff323232"
+            android:textSize="@dimen/sp_24" />
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="match_parent"
+            android:background="@color/color_gary_e9e9e9" />
+
+        <TextView
+            android:id="@+id/neighborNext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="5"
+            android:gravity="center"
+            android:text="@string/confirmRegistration"
+            android:textColor="@color/color_ff4483f8"
+            android:textSize="@dimen/sp_24" />
+    </LinearLayout>
+</LinearLayout>

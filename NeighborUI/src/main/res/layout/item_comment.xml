@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <com.jingxi.smartlife.pad.sdk.neighbor.ui.views.RoundImageView
+        android:id="@+id/riv_commentPic"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_20"
+        app:borderColor="@color/transparent"
+        tools:src="@mipmap/mrtx" />
+
+    <TextView
+        android:id="@+id/tv_commentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_24"
+        android:layout_toEndOf="@+id/riv_commentPic"
+        android:textColor="@color/ff323232"
+        android:textSize="@dimen/sp_20"
+        tools:text="美工狗" />
+
+    <TextView
+        android:id="@+id/tv_commentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_commentName"
+        android:layout_below="@+id/tv_commentName"
+        android:layout_marginTop="@dimen/dp_4"
+        android:textColor="@color/color_gary_999"
+        android:textSize="@dimen/sp_16"
+        tools:text="08-07 14:44" />
+
+    <TextView
+        android:id="@+id/tv_commentContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_commentName"
+        android:layout_below="@+id/tv_commentTime"
+        android:layout_marginTop="@dimen/dp_12"
+        android:textSize="@dimen/sp_20"
+        tools:text="饭佛爱国" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_2"
+        android:layout_below="@+id/tv_commentContent"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="@color/color_gary_e9e9e9" />
+</RelativeLayout>

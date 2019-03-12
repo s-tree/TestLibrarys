@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/neighbor_title"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_54">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/titlebar_tab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabSelectedTextColor="@color/ff323232"
+        app:tabTextColor="@color/ff919191"
+        app:tabIndicatorHeight="0dp"
+        app:tabPaddingEnd="60dp"
+        app:tabPaddingStart="60dp"
+        android:layout_marginEnd="@dimen/dp_100"
+        android:layout_marginStart="@dimen/dp_100"/>
+
+    <TextView
+        android:id="@+id/titlebar_title"
+        android:textSize="@dimen/dp_23"
+        android:textColor="@color/ff323232"
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/titlebar_back"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_54"
+        android:layout_alignParentEnd="true"
+        android:drawablePadding="@dimen/dp_11"
+        android:drawableStart="@mipmap/library_back"
+        android:gravity="center"
+        android:paddingEnd="@dimen/dp_30"
+        android:paddingStart="@dimen/dp_10"
+        android:textColor="@color/ff323232"
+        android:textSize="@dimen/sp_24"
+        android:text="@string/back"/>
+</RelativeLayout>
