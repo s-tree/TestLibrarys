@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.StringUtils;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -65,12 +65,12 @@ public class NeighborhoodOKDialog extends BaseLibDialog implements View.OnClickL
 
     @Override
     protected float getWidth() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_500);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_500);
     }
 
     @Override
     protected float getHeight() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_300);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_300);
     }
 
     @Override

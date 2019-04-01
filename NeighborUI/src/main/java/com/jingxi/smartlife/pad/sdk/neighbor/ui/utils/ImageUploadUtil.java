@@ -10,7 +10,7 @@ import android.text.TextUtils;
 
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 import com.jingxi.smartlife.pad.util.PadHttpParams;
 
 import java.lang.annotation.Retention;
@@ -60,12 +60,12 @@ public class ImageUploadUtil {
         /**
          * 保存的图片路径
          */
-        AliyunUtils aliyunUtils = AliyunUtils.getInstance(JXContextWarpper.context);
+        AliyunUtils aliyunUtils = AliyunUtils.getInstance(JXContextWrapper.context);
         String imgUrl = TextUtils.concat(aliyunUtils.getOssFilepath(type),
                 LibAppUtils.getTimeDataToString(System.currentTimeMillis(), "yyyy-MM-dd"),"/",filename).toString();
         PutObjectRequest put = new PutObjectRequest(aliyunUtils.getBucketName(), imgUrl, bytes);
         try {
-            AliyunUtils.getInstance(JXContextWarpper.context).getOssClient().putObject(put);
+            AliyunUtils.getInstance(JXContextWrapper.context).getOssClient().putObject(put);
             ArrayMap<String, String> uploadto = new ArrayMap<>();
             uploadto.put(PadHttpParams.PublicKey.RESULT, PadHttpParams.PublicValue.TRUE);
             uploadto.put(IMAGE_NAME, filename);
@@ -144,7 +144,7 @@ public class ImageUploadUtil {
             /**
              *   读取uri所在的图片
              */
-            return MediaStore.Images.Media.getBitmap(JXContextWarpper.context.getContentResolver(), uri);
+            return MediaStore.Images.Media.getBitmap(JXContextWrapper.context.getContentResolver(), uri);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -53,7 +53,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.NeighborSwipeRefreshLayout
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.RoundImageView;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.PicassoImageLoader;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.xbus.Bus;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 import org.reactivestreams.Subscription;
 
@@ -144,8 +144,8 @@ public class NeighborRightView extends RelativeLayout implements IRightNeighborV
         scrollableLayout.post(new Runnable() {
             @Override
             public void run() {
-                scrollableLayout.setTopOffset((int) (DisplayUtil.getContentViewHeight() - JXContextWarpper.context.getResources().getDimension(R.dimen.dp_54) -
-                        rl_sendMessage.getHeight() - JXContextWarpper.context.getResources().getDimension(R.dimen.dp_30)));
+                scrollableLayout.setTopOffset((int) (DisplayUtil.getContentViewHeight() - JXContextWrapper.context.getResources().getDimension(R.dimen.dp_54) -
+                        rl_sendMessage.getHeight() - JXContextWrapper.context.getResources().getDimension(R.dimen.dp_30)));
             }
         });
         tv_enrollNumber = (TextView) findViewById(R.id.tv_enrollNumber);
@@ -407,7 +407,7 @@ public class NeighborRightView extends RelativeLayout implements IRightNeighborV
     public void setData(final NeighborInfoBean neighborInfoBean) {
         scrollableLayout.setVisibility(View.VISIBLE);
         noContent.setVisibility(View.GONE);
-        if (TextUtils.equals(neighborInfoBean.accid, JXContextWarpper.accid)) {
+        if (TextUtils.equals(neighborInfoBean.accid, JXContextWrapper.accid)) {
             iv_warning.setVisibility(View.GONE);
         } else {
             iv_warning.setVisibility(View.VISIBLE);
@@ -650,7 +650,7 @@ public class NeighborRightView extends RelativeLayout implements IRightNeighborV
                 view_commentCount.setVisibility(VISIBLE);
             }
             tv_commentCount.setText(StringUtils.getString(R.string.neighbor_reply_with_name2, neighborInfoBean.replyCounts));
-            if (TextUtils.equals(neighborInfoBean.accid, JXContextWarpper.accid)) {
+            if (TextUtils.equals(neighborInfoBean.accid, JXContextWrapper.accid)) {
                 if (Long.parseLong(neighborInfoBean.activityDeadline) - System.currentTimeMillis() < 0) {
                     tv_enrollEnd.setVisibility(VISIBLE);
                     tv_enrollEnd.setText(StringUtils.getString(R.string.neighbor_signup_count, neighborInfoBean.joinedCount));
@@ -797,7 +797,7 @@ public class NeighborRightView extends RelativeLayout implements IRightNeighborV
             tv_sec.setText(String.valueOf((Long.parseLong(neighborInfoBean.activityDeadline) - System.currentTimeMillis()) / 1000 % 60));
         } else {
             tv_enrollEnd.setVisibility(VISIBLE);
-            if (TextUtils.equals(neighborInfoBean.accid, JXContextWarpper.accid)) {
+            if (TextUtils.equals(neighborInfoBean.accid, JXContextWrapper.accid)) {
                 tv_enrollEnd.setText(StringUtils.getString(R.string.neighbor_signup_count, neighborInfoBean.joinedCount));
                 tv_enrollEnd.setBackgroundColor(getResources().getColor(R.color.transparent));
             } else {

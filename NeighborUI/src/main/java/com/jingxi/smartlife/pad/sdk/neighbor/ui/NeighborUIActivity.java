@@ -16,7 +16,7 @@ public class NeighborUIActivity extends AppCompatActivity {
 
         JXPadSdk.init(getApplication());
         JXPadSdk.setAccid("y_p_1241_18021651812");
-        JXPadSdk.setAppKey("userKey:d38bf3b32e09484b83673c90772442cc","6a591fc521f347bfad171fd2932e60d6");
+        JXPadSdk.setAppKey("test","467ee23d-f01d-4cc2-97a2-7e675f91a211");
         JXPadSdk.setCommunityId("1");
         JXPadSdk.setFamilyInfoId("1241");
         JXPadSdk.initNeighbor();

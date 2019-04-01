@@ -11,7 +11,7 @@ import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider;
 
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 import com.jingxi.smartlife.pad.util.ConfigUtil;
 
 import java.lang.annotation.Retention;
@@ -54,7 +54,7 @@ public class AliyunUtils {
     }
 
     public String getOssFilepath(@UploadType int type) {
-        if(TextUtils.isEmpty(JXContextWarpper.familyInfoId)){
+        if(TextUtils.isEmpty(JXContextWrapper.familyInfoId)){
             throw new RuntimeException("JXPadSDK.setFamilyInfoId is not called");
         }
         if (type == VISIT) {
@@ -62,7 +62,7 @@ public class AliyunUtils {
              * 访客记录
              */
             return TextUtils.concat("visit/",
-                    JXContextWarpper.familyInfoId,
+                    JXContextWrapper.familyInfoId,
                     "/").toString();
         } else if (type == HEAD) {
             /**
@@ -139,7 +139,7 @@ public class AliyunUtils {
             height = view.getMeasuredHeight();
         }
         int width = view.getMeasuredHeight();
-        if (height <= 0 || width <= 0 || TextUtils.isEmpty(highImage) || (!highImage.contains(AliyunUtils.getInstance(JXContextWarpper.context).getOssPath()))) {
+        if (height <= 0 || width <= 0 || TextUtils.isEmpty(highImage) || (!highImage.contains(AliyunUtils.getInstance(JXContextWrapper.context).getOssPath()))) {
             return highImage;
         }
         if (height == width) {

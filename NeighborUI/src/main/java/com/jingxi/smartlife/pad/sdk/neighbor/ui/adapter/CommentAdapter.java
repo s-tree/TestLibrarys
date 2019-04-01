@@ -15,7 +15,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.LibAppUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.StringUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.RoundImageView;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.PicassoImageLoader;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -85,7 +85,7 @@ public class CommentAdapter extends RecyclerView.Adapter {
                 commentViewHoler.tv_commentContent.setText(bean.getContent());
             } else {
                 String nickName = bean.getParentReplyMemberName();
-                commentViewHoler.tv_commentContent.setText(LibAppUtils.setDifTvColoc(JXContextWarpper.context, Color.parseColor("#4483f8"),
+                commentViewHoler.tv_commentContent.setText(LibAppUtils.setDifTvColoc(JXContextWrapper.context, Color.parseColor("#4483f8"),
                         TextUtils.concat("回复@",nickName,":",bean.getContent()).toString(), 2, 3 + nickName.length()));
             }
             commentViewHoler.rl_content.setOnClickListener(onClickListener);

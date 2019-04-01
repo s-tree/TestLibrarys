@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 /**
  * 通用标题栏
@@ -116,7 +116,7 @@ public class CurrencyBaseTitleBar extends FrameLayout implements View.OnClickLis
     public void setBackPicture(@DrawableRes int backPicture) {
         this.backPicture = backPicture;
         if (backPicture != -1 && currencyClose != null) {
-            Drawable drawable = ContextCompat.getDrawable(JXContextWarpper.context, backPicture);
+            Drawable drawable = ContextCompat.getDrawable(JXContextWrapper.context, backPicture);
             // 这一步必须要做,否则不会显示.
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             currencyClose.setCompoundDrawables(drawable, null, null, null);

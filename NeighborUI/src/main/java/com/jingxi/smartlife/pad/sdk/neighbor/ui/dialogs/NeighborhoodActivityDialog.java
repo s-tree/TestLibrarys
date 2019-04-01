@@ -18,7 +18,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.LibAppUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.NoEmojiInput;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.StringUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.ToastUtil;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 /**
  * 邻里活动对话框
@@ -95,12 +95,12 @@ public class NeighborhoodActivityDialog extends BaseLibDialog implements View.On
 
     @Override
     protected float getWidth() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_500);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_500);
     }
 
     @Override
     protected float getHeight() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_433_3);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_433_3);
     }
 
     @Override

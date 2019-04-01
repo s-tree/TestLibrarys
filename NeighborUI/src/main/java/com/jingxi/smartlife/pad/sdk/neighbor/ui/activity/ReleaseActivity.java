@@ -41,7 +41,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.ToastUtil;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.CurrencyEasyTitleBar;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.FlowTagLayout;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.MyEditText;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -424,7 +424,7 @@ public class ReleaseActivity extends AppCompatActivity implements View.OnClickLi
             RelativeLayout imageViews = (RelativeLayout) ReleaseActivity.this.getLayoutInflater().inflate(R.layout.item_add_photo, (FlowTagLayout) findViewById(R.id.ftl_addPhoto), false);
             ImageView imageView = (ImageView) imageViews.findViewById(R.id.iv_photo);
             ImageView iv_deletePhoto = (ImageView) imageViews.findViewById(R.id.iv_deletePhoto);
-            Picasso.with(JXContextWarpper.context).load((Uri) newImagePrepareUpload.get(i).get("Uri"))
+            Picasso.with(JXContextWrapper.context).load((Uri) newImagePrepareUpload.get(i).get("Uri"))
                     .placeholder(R.mipmap.ic_placeholderimg)
                     .error(R.mipmap.ic_placeholderimg)
                     .resize(AliyunUtils.SIZE_THUMB_Neighbor, AliyunUtils.SIZE_THUMB_Neighbor)
@@ -435,12 +435,12 @@ public class ReleaseActivity extends AppCompatActivity implements View.OnClickLi
              * 添加图片名称给控件tag
              */
             iv_deletePhoto.setTag(newImagePrepareUpload.get(i).get("name"));
-            ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams((int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_132),
-                    (int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_127));
-            layoutParams.bottomMargin = (int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_10);
-            layoutParams.rightMargin = (int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_13);
-            layoutParams.leftMargin = (int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_13);
-            layoutParams.topMargin = (int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_8);
+            ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams((int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_132),
+                    (int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_127));
+            layoutParams.bottomMargin = (int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_10);
+            layoutParams.rightMargin = (int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_13);
+            layoutParams.leftMargin = (int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_13);
+            layoutParams.topMargin = (int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_8);
             imageViewList.add(imageViews);
             if (imageViewList != null && imageViewList.size() > 0) {
                 ftl_addPhoto.addView(imageViews, imageViewList.size() - 1, layoutParams);

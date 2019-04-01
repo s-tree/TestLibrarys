@@ -15,7 +15,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.observer.ResponseObserver;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.LibAppUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.StringUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.ToastUtil;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 /**
  * 举报
@@ -123,7 +123,7 @@ public class ReportDialog extends BaseLibDialog implements View.OnClickListener 
      */
     private void updataView(TextView textView, boolean selected) {
         if (textView != null) {
-            Drawable drawable = ContextCompat.getDrawable(JXContextWarpper.context, selected ? R.mipmap.neighbor_report_ok : R.mipmap.neighbor_report_no);
+            Drawable drawable = ContextCompat.getDrawable(JXContextWrapper.context, selected ? R.mipmap.neighbor_report_ok : R.mipmap.neighbor_report_no);
             // 这一步必须要做,否则不会显示.
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             textView.setCompoundDrawables(drawable, null, null, null);
@@ -144,17 +144,17 @@ public class ReportDialog extends BaseLibDialog implements View.OnClickListener 
 
     @Override
     protected float getWidth() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_500);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_500);
     }
 
     @Override
     protected float getHeight() {
         if (TextUtils.equals(LibAppUtils.getCurrentPhoneLanguage(getContext()), "zh")) {
-            return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_350);
+            return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_350);
         } else if (TextUtils.equals(LibAppUtils.getCurrentPhoneLanguage(getContext()), "en")) {
-            return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_400);
+            return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_400);
         }
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_350);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_350);
     }
 
     @Override

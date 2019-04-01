@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.Window;
 
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 
 public class LoadingDialog extends Dialog {
@@ -26,7 +26,7 @@ public class LoadingDialog extends Dialog {
         setCanceledOnTouchOutside(false);
         if(getWindow() != null){
             getWindow().setBackgroundDrawable(
-                    new ColorDrawable(JXContextWarpper.context.getResources().getColor(android.R.color.transparent)));
+                    new ColorDrawable(JXContextWrapper.context.getResources().getColor(android.R.color.transparent)));
         }
     }
 

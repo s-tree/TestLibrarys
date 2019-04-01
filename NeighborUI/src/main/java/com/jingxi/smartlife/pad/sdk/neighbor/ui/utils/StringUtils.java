@@ -6,7 +6,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -380,11 +380,11 @@ public class StringUtils {
     }
 
     public static String getString(@StringRes int stringRes){
-        return JXContextWarpper.context.getString(stringRes);
+        return JXContextWrapper.context.getString(stringRes);
     }
 
     public static String getString(@StringRes int stringRes,Object... placeString){
-        return JXContextWarpper.context.getString(stringRes,placeString);
+        return JXContextWrapper.context.getString(stringRes,placeString);
     }
 
     public static String getFormatTime(long time) {

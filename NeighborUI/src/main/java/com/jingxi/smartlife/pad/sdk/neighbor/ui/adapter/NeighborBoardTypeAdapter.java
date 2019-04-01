@@ -12,7 +12,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.NeighborManager;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.bean.NeighborBoardTypeBean;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.PicassoImageLoader;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 import java.util.List;
 
@@ -34,8 +34,8 @@ public class NeighborBoardTypeAdapter extends RecyclerView.Adapter {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_neighbor_type_item, parent, false);
         view.setLayoutParams(
                 new RecyclerView.LayoutParams(
-                        (int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_208),
-                (int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_120)));
+                        (int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_208),
+                (int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_120)));
         return new NeighborBoardTypeAdapter.NeighborBoardTypeViewHolder(view);
     }
 

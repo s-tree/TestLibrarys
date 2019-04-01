@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 public class MyToast {
 
@@ -45,7 +45,7 @@ public class MyToast {
 		 * 由于用自定义的drawable作为bg时左侧有部分缺失，故外层添加一个LinearGroup，加上padding，使此部分能展示出来
 		 */
 		LinearLayout linearLayout = new LinearLayout(context);
-		int padding = (int) JXContextWarpper.context.getResources().getDimension(R.dimen.dp_10);
+		int padding = (int) JXContextWrapper.context.getResources().getDimension(R.dimen.dp_10);
 		linearLayout.setPadding(padding,0,padding,0);
 		linearLayout.addView(mToastView);
 		mToastView = linearLayout;
@@ -109,7 +109,7 @@ public class MyToast {
 	public static void showText(String text){
 		try{
 			if(miuiToast == null){
-				miuiToast = new MyToast(JXContextWarpper.context, text, LENGTH_SHORT);
+				miuiToast = new MyToast(JXContextWrapper.context, text, LENGTH_SHORT);
 			}
 			miuiToast.setText(text).show();
 		}catch (Exception e){

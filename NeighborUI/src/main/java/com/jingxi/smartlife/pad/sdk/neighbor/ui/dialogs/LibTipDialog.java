@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.observer.MyAction;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 /**
  * 提醒对话框
@@ -78,12 +78,12 @@ public class LibTipDialog extends BaseLibDialog implements View.OnClickListener 
 
     @Override
     protected float getWidth() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_500);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_500);
     }
 
     @Override
     protected float getHeight() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_180);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_180);
     }
 
     @Override

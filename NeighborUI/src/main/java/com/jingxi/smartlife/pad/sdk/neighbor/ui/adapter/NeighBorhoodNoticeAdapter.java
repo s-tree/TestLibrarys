@@ -10,7 +10,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.LibAppUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.StringUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.MultiStyleTextView;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.PicassoImageLoader;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 import com.pk.base.BaseQuickAdapter;
 import com.pk.base.BaseViewHolder;
 
@@ -38,7 +38,7 @@ public class NeighBorhoodNoticeAdapter extends BaseQuickAdapter<NeighborNoticeBe
         MultiStyleTextView replyContent = helper.getView(R.id.replyContent);
         if (TextUtils.equals(NeighborNoticeBean.TYPE_REPLY, item.type)) {
             String replyParentName = item.replyParentMemberName;
-            if (TextUtils.isEmpty(replyParentName) || TextUtils.equals(item.replyParentMemberAccId, JXContextWarpper.accid)) {
+            if (TextUtils.isEmpty(replyParentName) || TextUtils.equals(item.replyParentMemberAccId, JXContextWrapper.accid)) {
                 replyParentName = StringUtils.getString(R.string.YOU);
             }
             helper.setVisible(R.id.reply, true);

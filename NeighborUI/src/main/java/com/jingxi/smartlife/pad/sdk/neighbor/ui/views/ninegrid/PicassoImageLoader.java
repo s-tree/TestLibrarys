@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.R;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
 
@@ -20,7 +20,7 @@ public class PicassoImageLoader implements NineGridView.ImageLoader {
     //这30M空间单独划给社区新鲜事和广告图片使用
     public static Picasso getMyPicasso(){
         if(myPicasso == null){
-            Picasso.Builder builder = new Picasso.Builder(JXContextWarpper.context);
+            Picasso.Builder builder = new Picasso.Builder(JXContextWrapper.context);
             mCache = new LruCache(30 * 1024 * 1024 );
             builder.memoryCache(mCache);
             myPicasso = builder.build();

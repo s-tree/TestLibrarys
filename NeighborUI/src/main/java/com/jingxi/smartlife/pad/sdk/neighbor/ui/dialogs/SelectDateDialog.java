@@ -13,7 +13,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.observer.MyAction;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.LibAppUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.StringUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.ToastUtil;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 /**
  * Created by kxrt_android_03 on 2017/11/10.
@@ -79,12 +79,12 @@ public class SelectDateDialog extends BaseLibDialog implements View.OnClickListe
 
     @Override
     protected float getWidth() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_500);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_500);
     }
 
     @Override
     protected float getHeight() {
-        return JXContextWarpper.context.getResources().getDimension(R.dimen.dp_440);
+        return JXContextWrapper.context.getResources().getDimension(R.dimen.dp_440);
     }
 
     @Override

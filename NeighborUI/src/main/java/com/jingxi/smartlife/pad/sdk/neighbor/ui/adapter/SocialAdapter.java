@@ -25,7 +25,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.DisplayUtil;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.StringUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.RoundImageView;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.PicassoImageLoader;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 import java.util.List;
 
@@ -121,7 +121,7 @@ public class SocialAdapter extends RecyclerView.Adapter<SocialAdapter.ViewHolder
                 holder.statu_tv_content.setText(infoBean.content);
             }
             holder.praise_tv.setTag(infoBean);
-            if (TextUtils.equals(JXContextWarpper.accid, infoBean.accid)) {
+            if (TextUtils.equals(JXContextWrapper.accid, infoBean.accid)) {
                 holder.deleteItem.setVisibility(View.VISIBLE);
             } else {
                 holder.deleteItem.setVisibility(View.GONE);
@@ -132,7 +132,7 @@ public class SocialAdapter extends RecyclerView.Adapter<SocialAdapter.ViewHolder
                 holder.praise_tv.setOnClickListener(onClickListener);
                 holder.deleteItem.setOnClickListener(onClickListener);
             }
-            Drawable drawable = ContextCompat.getDrawable(JXContextWarpper.context,
+            Drawable drawable = ContextCompat.getDrawable(JXContextWrapper.context,
                     infoBean.isFavour ? R.mipmap.neighbor_icon_zan_red : R.mipmap.neighbor_icon_zan);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             holder.praise_tv.setCompoundDrawables(drawable, null, null, null);
@@ -141,7 +141,7 @@ public class SocialAdapter extends RecyclerView.Adapter<SocialAdapter.ViewHolder
             holder.comment_tv.setTextColor(Color.DKGRAY);
             String replyCounts = String.valueOf(infoBean.replyCounts);
             holder.comment_tv.setText(TextUtils.isEmpty(replyCounts) ? "0" : replyCounts);
-            holder.statu_iv_head.setBorderInsideColor(JXContextWarpper.context.getResources().getColor(R.color.white));
+            holder.statu_iv_head.setBorderInsideColor(JXContextWrapper.context.getResources().getColor(R.color.white));
             holder.statu_iv_head.setImageResource(R.mipmap.mrtx);
 
             PicassoImageLoader.getMyPicasso()
@@ -213,7 +213,7 @@ public class SocialAdapter extends RecyclerView.Adapter<SocialAdapter.ViewHolder
                 }
                 if (simgList.size() > 3) {
                     holder.moreImg.setVisibility(View.VISIBLE);
-                    holder.moreImg.setText(JXContextWarpper.context.getString(R.string.plus).concat(String.valueOf(simgList.size() - 3)));
+                    holder.moreImg.setText(JXContextWrapper.context.getString(R.string.plus).concat(String.valueOf(simgList.size() - 3)));
                 } else {
                     holder.moreImg.setVisibility(View.GONE);
                 }

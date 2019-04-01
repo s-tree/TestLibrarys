@@ -20,7 +20,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.StringUtils;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.utils.ToastUtil;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.widget.NeighborLeftView;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.xbus.Bus;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 import com.jingxi.smartlife.pad.util.PadHttpParams;
 
 import java.util.ArrayList;
@@ -90,7 +90,7 @@ public class LeftNeighborBoardpresenter implements ILeftNeighborBoardPresenter {
             currentShowAccId = neighborInfoBean.accid;
             needShowFirstItem = false;
         } else {
-            currentShowAccId = JXContextWarpper.accid;
+            currentShowAccId = JXContextWrapper.accid;
             needShowFirstItem = true;
         }
         if (leftView != null) {
@@ -108,7 +108,7 @@ public class LeftNeighborBoardpresenter implements ILeftNeighborBoardPresenter {
         onHead = true;
         String accId = "";
         if (detailtype != -1) {
-            accId = JXContextWarpper.accid;
+            accId = JXContextWrapper.accid;
         } else {
             accId = neighborInfoBean.accid;
         }
@@ -153,7 +153,7 @@ public class LeftNeighborBoardpresenter implements ILeftNeighborBoardPresenter {
             if (detailtype == -1) {
                 otherAccId = neighborInfoBean.accid;
             } else {
-                otherAccId = JXContextWarpper.accid;
+                otherAccId = JXContextWrapper.accid;
             }
             JXPadSdk.getNeighborManager().getNeighborBoardList("",String.valueOf(pageIndex), otherAccId)
                     .subscribe(action);
@@ -291,7 +291,7 @@ public class LeftNeighborBoardpresenter implements ILeftNeighborBoardPresenter {
             if (detailtype == -1) {
                 otherAccId = neighborInfoBean.accid;
             } else {
-                otherAccId = JXContextWarpper.accid;
+                otherAccId = JXContextWrapper.accid;
             }
             JXPadSdk.getNeighborManager().getNeighborBoardList("",String.valueOf(pageIndex),otherAccId)
                     .subscribe(loadMoreAction);

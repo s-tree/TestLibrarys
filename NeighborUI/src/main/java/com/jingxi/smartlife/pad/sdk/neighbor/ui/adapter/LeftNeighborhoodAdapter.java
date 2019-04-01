@@ -23,7 +23,7 @@ import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.ImageInfo;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.MyNineGridViewAdper;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.NineGridView;
 import com.jingxi.smartlife.pad.sdk.neighbor.ui.views.ninegrid.PicassoImageLoader;
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 import com.pk.base.BaseQuickAdapter;
 import com.pk.base.BaseViewHolder;
 
@@ -94,14 +94,14 @@ public class LeftNeighborhoodAdapter extends BaseQuickAdapter<NeighborInfoBean, 
         helper.setText(R.id.left_favourite, String.valueOf(item.favourCounts));
         helper.setTag(R.id.left_favourite, item);
         if (!item.isFavour) {
-            Drawable drawable = ContextCompat.getDrawable(JXContextWarpper.context, R.mipmap.neighbor_icon_zan);
+            Drawable drawable = ContextCompat.getDrawable(JXContextWrapper.context, R.mipmap.neighbor_icon_zan);
             /**
              * 这一步必须要做,否则不会显示
              */
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             helper.<TextView>getView(R.id.left_favourite).setCompoundDrawables(drawable, null, null, null);
         } else {
-            Drawable drawable = ContextCompat.getDrawable(JXContextWarpper.context, R.mipmap.neighbor_icon_zan_red);
+            Drawable drawable = ContextCompat.getDrawable(JXContextWrapper.context, R.mipmap.neighbor_icon_zan_red);
             /**
              * 这一步必须要做,否则不会显示
              */
@@ -121,7 +121,7 @@ public class LeftNeighborhoodAdapter extends BaseQuickAdapter<NeighborInfoBean, 
             info.setBigImageUrl(simgList.get(i));
             imageInfo.add(info);
         }
-        MyNineGridViewAdper nineGridViewAdapter = new MyNineGridViewAdper(JXContextWarpper.context, imageInfo,iJump);
+        MyNineGridViewAdper nineGridViewAdapter = new MyNineGridViewAdper(JXContextWrapper.context, imageInfo,iJump);
         nineGridViewAdapter.canClick = (onClickListener != null);
         helper.<NineGridView>getView(R.id.ninegridview_img).setAdapter(nineGridViewAdapter);
         //整个条目的点击事件
@@ -145,7 +145,7 @@ public class LeftNeighborhoodAdapter extends BaseQuickAdapter<NeighborInfoBean, 
             helper.setBackgroundColor(R.id.sort_tv, Color.parseColor(item.neighborBoardTypeColor));
         }
         helper.setTag(R.id.delete_item, item);
-        if (TextUtils.equals(JXContextWarpper.accid, item.accid)) {
+        if (TextUtils.equals(JXContextWrapper.accid, item.accid)) {
             helper.setVisible(R.id.delete_item, true);
             helper.setOnClickListener(R.id.delete_item, onClickListener);
         } else {

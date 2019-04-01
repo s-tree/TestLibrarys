@@ -38,7 +38,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
-import com.jingxi.smartlife.pad.sdk.utils.JXContextWarpper;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -151,14 +151,14 @@ public class LibAppUtils {
     }
 
     public static Date getDateToString(String DateStr, String template) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(template, JXContextWarpper.context.getResources().getConfiguration().locale);
+        SimpleDateFormat sdf = new SimpleDateFormat(template, JXContextWrapper.context.getResources().getConfiguration().locale);
         return sdf.parse(DateStr);
     }
 
     public static String loadAss(String fileName) {
         String localCache = "";
         try {
-            InputStream inputStream = JXContextWarpper.context.getAssets().open(fileName);
+            InputStream inputStream = JXContextWrapper.context.getAssets().open(fileName);
             StringBuilder builder = new StringBuilder();
             byte[] bb = new byte[1024];
             int k = -1;
@@ -299,7 +299,7 @@ public class LibAppUtils {
 
     public static String getTimeDataToString(long date, String type) {
 
-        return new SimpleDateFormat(type, JXContextWarpper.context.getResources().getConfiguration().locale).format(new Date(date));
+        return new SimpleDateFormat(type, JXContextWrapper.context.getResources().getConfiguration().locale).format(new Date(date));
     }
 
     public static String getTimeDataToString(String date, String type) {
@@ -382,9 +382,9 @@ public class LibAppUtils {
 
     //获取App版本号
     public static String getAppVersionCode() {
-        PackageManager pm = JXContextWarpper.context.getPackageManager();
+        PackageManager pm = JXContextWrapper.context.getPackageManager();
         try {
-            PackageInfo info = pm.getPackageInfo(JXContextWarpper.context.getPackageName(), 0);
+            PackageInfo info = pm.getPackageInfo(JXContextWrapper.context.getPackageName(), 0);
             return info.versionName + "." + String.valueOf(info.versionCode);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -481,7 +481,7 @@ public class LibAppUtils {
 
         // ActivityManager
 
-        ActivityManager am = ((ActivityManager) JXContextWarpper.context.getSystemService(Context.ACTIVITY_SERVICE));
+        ActivityManager am = ((ActivityManager) JXContextWrapper.context.getSystemService(Context.ACTIVITY_SERVICE));
 
         while (true) {
             for (ActivityManager.RunningAppProcessInfo info : am.getRunningAppProcesses()) {
@@ -546,7 +546,7 @@ public class LibAppUtils {
     }
 
     public static float getDensity() {
-        return JXContextWarpper.context.getResources().getDisplayMetrics().density;
+        return JXContextWrapper.context.getResources().getDisplayMetrics().density;
     }
 
     public static String intToIp(int i) {
@@ -798,7 +798,7 @@ public class LibAppUtils {
         // 通过包名获取此APP详细信息，包括Activities、services、versioncode、name等等
         PackageInfo packageinfo = null;
         try {
-            packageinfo = JXContextWarpper.context.getPackageManager().getPackageInfo(packagename, 0);
+            packageinfo = JXContextWrapper.context.getPackageManager().getPackageInfo(packagename, 0);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -812,7 +812,7 @@ public class LibAppUtils {
         resolveIntent.setPackage(packageinfo.packageName);
 
         // 通过getPackageManager()的queryIntentActivities方法遍历
-        List<ResolveInfo> resolveinfoList = JXContextWarpper.context.getPackageManager()
+        List<ResolveInfo> resolveinfoList = JXContextWrapper.context.getPackageManager()
                 .queryIntentActivities(resolveIntent, 0);
 
         ResolveInfo resolveinfo = resolveinfoList.iterator().next();
@@ -829,11 +829,11 @@ public class LibAppUtils {
             // 设置ComponentName参数1:packagename参数2:MainActivity路径
             ComponentName cn = new ComponentName(packageName, className);
             intent.setComponent(cn);
-//            Activity activity = JXContextWarpper.context.getLastActivity();
+//            Activity activity = JXContextWrapper.context.getLastActivity();
 //            if (activity == null || activity.isFinishing()) {
 //                return false;
 //            }
-            JXContextWarpper.context.startActivity(intent);
+            JXContextWrapper.context.startActivity(intent);
         }
         return true;
     }
@@ -943,7 +943,7 @@ public class LibAppUtils {
     }
 
     public static Drawable getDrawableByRes(@DrawableRes int id) {
-        Drawable drawable = ContextCompat.getDrawable(JXContextWarpper.context, id);
+        Drawable drawable = ContextCompat.getDrawable(JXContextWrapper.context, id);
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         return drawable;
     }
