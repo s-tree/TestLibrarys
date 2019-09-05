@@ -9,16 +9,11 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.intercom.base.Log;
 import com.intercom.sdk.IntercomConstants;
-import com.intercom.sdk.NetClient;
 import com.jingxi.smartlife.pad.sdk.JXPadSdk;
 import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
-import com.jingxi.smartlife.pad.sdk.doorAccess.base.DoorSessionManager;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.bean.DoorEvent;
-import com.jingxi.smartlife.pad.sdk.doorAccess.base.bean.DoorRecordBean;
-import com.jingxi.smartlife.pad.sdk.doorAccess.base.orm.DoorAccessOrmUtil;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.ui.DoorAccessConversationUI;
 
 /**
@@ -46,6 +41,9 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
     protected void onDestroy() {
         super.onDestroy();
         DoorAccessManager.getInstance().removeConversationUIListener(this);
+        if(!TextUtils.isEmpty(recordSession)){
+            DoorAccessManager.getInstance().stopRecord(DoorAccessMainActivity.familyID,sessionId,recordSession);
+        }
     }
 
     @Override
@@ -98,6 +96,23 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
             finish();
         }
 
+    }
+
+    /**
+     * 单次会话中，可以通过调用 startRecord 和 stopRecord 来实现录制、停止录制视频
+     */
+    public String recordSession = "";
+    public void startRecord(){
+        recordSession = DoorAccessManager.getInstance().startRecord(DoorAccessMainActivity.familyID,sessionId);
+    }
+
+    public void stopRecord(){
+        DoorAccessManager.getInstance().stopRecord(DoorAccessMainActivity.familyID,sessionId,recordSession);
+    }
+
+    @Override
+    public int inviteIntercept(DoorEvent inviteEvent) {
+        return 0;
     }
 
     @Override

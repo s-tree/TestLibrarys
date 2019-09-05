@@ -72,7 +72,7 @@ public class DoorAccessExtActivity extends AppCompatActivity implements AdapterV
             Toast.makeText(this,"请输入要设置的备注名",Toast.LENGTH_SHORT).show();
             return;
         }
-        DoorKit.Options options = new DoorKit.Options();
+        DoorKit.Options options = DoorKit.getOptions();
         options.alias = alias;
         DoorKit.init(options);
         /**
@@ -172,6 +172,11 @@ public class DoorAccessExtActivity extends AppCompatActivity implements AdapterV
             }
             ext_status.setText("正在与 " + showName + " " + type + " 通话");
         }
+    }
+
+    @Override
+    public int inviteIntercept(DoorEvent inviteEvent) {
+        return 0;
     }
 
     private ExtDeviceBean getDevice(NetClient netClient){

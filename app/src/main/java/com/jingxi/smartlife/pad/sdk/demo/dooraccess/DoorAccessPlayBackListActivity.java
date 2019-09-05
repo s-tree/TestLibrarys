@@ -19,6 +19,7 @@ import com.jingxi.smartlife.pad.sdk.JXPadSdk;
 import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.bean.DoorRecordBean;
+import com.jingxi.smartlife.pad.sdk.doorAccess.base.bean.RecordVideoBean;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -37,6 +38,7 @@ public class DoorAccessPlayBackListActivity extends AppCompatActivity implements
     DoorAccessManager manager;
     private int pageSize = 50;
 
+    List<RecordVideoBean> recordVideoBeans = new ArrayList<>();
     List<DoorRecordBean> doorRecordBeans = new ArrayList<>();
 
     @Override
@@ -50,15 +52,23 @@ public class DoorAccessPlayBackListActivity extends AppCompatActivity implements
         getData();
     }
 
+    /**
+     * {@link DoorRecordBean} 是每次会话的记录
+     * 单次会话可能会有多个视频记录，表现为  {@link DoorRecordBean#getRecordList()}
+     */
     private void getData(){
 //        List<DoorRecordBean>  recordBeans = manager.getHistoryList(DoorAccessMainActivity.familyID,DoorRecordBean.RECORD_TYPE_DOOR,0,pageSize);
 //        List<DoorRecordBean>  recordBeans = manager.getHistoryList(DoorAccessMainActivity.familyID,DoorRecordBean.RECORD_TYPE_P2P,0,pageSize);
         List<DoorRecordBean>  recordBeans = manager.getHistoryListByType(DoorAccessMainActivity.familyID,DoorRecordBean.RECORD_TYPE_EXT,0,pageSize);
-        if(recordBeans != null){
-            doorRecordBeans.addAll(recordBeans);
+        for(DoorRecordBean recordBean : recordBeans){
+            List<RecordVideoBean> videoBeans = recordBean.getRecordList();
+            if(videoBeans.size() == 0){
+                continue;
+            }
+            recordVideoBeans.addAll(recordBean.getRecordList());
         }
         if(listAdapter == null){
-            listAdapter = new ListAdapter(doorRecordBeans);
+            listAdapter = new ListAdapter(recordVideoBeans);
             listView.setAdapter(listAdapter);
         }else{
             listAdapter.notifyDataSetChanged();
@@ -68,19 +78,20 @@ public class DoorAccessPlayBackListActivity extends AppCompatActivity implements
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        DoorRecordBean recordBean = doorRecordBeans.get(i);
+        RecordVideoBean recordBean = recordVideoBeans.get(i);
         if(!new File(recordBean.videoPath).exists()){
             Toast.makeText(this,"该记录没有录制视频",Toast.LENGTH_SHORT).show();
             return;
         }
         Intent intent = new Intent(this,DoorAccessPlayBackActivity.class);
-        intent.putExtra("sessionId",recordBean.session_id);
+        intent.putExtra("sessionId",recordBean.videoSession);
+        intent.putExtra("videoPath",recordBean.videoPath);
         startActivity(intent);
     }
 
     private static class ListAdapter extends BaseAdapter {
-        private List<DoorRecordBean> historys;
-        public ListAdapter(List<DoorRecordBean> devices){
+        private List<RecordVideoBean> historys;
+        public ListAdapter(List<RecordVideoBean> devices){
             this.historys = devices;
         }
 
@@ -114,19 +125,19 @@ public class DoorAccessPlayBackListActivity extends AppCompatActivity implements
             }else{
                 holder = (SimpleHolder) view.getTag();
             }
-            DoorRecordBean recordBean = historys.get(i);
-            holder.textView.setText(recordBean.session_id);
-            if(!TextUtils.isEmpty(recordBean.thumbPath)){
+            RecordVideoBean recordBean = historys.get(i);
+            holder.textView.setText(recordBean.chatSession);
+            if(!TextUtils.isEmpty(recordBean.picPath)){
                 holder.imageView.setVisibility(View.VISIBLE);
                 Picasso.with(viewGroup.getContext())
-                        .load(new File(recordBean.thumbPath))
+                        .load(new File(recordBean.picPath))
                         .resize(100,100)
                         .into(holder.imageView);
             }else{
                 holder.imageView.setVisibility(View.GONE);
             }
-            holder.tvDevice.setText(recordBean.show_name);
-            holder.textView_status.setText(recordBean.getStatusByEvent());
+//            holder.tvDevice.setText("");
+//            holder.textView_status.setText(recordBean.getStatusByEvent());
             holder.textView_date.setText(formatNearDay(recordBean.startTime));
             return view;
         }

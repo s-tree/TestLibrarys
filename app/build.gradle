@@ -22,8 +22,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.1.4.6"
-    compile "com.jingxi.smartlife.pad.sdk:sdk:1.0.2"
+    compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.1.8.24"
+    compile "com.jingxi.smartlife.pad.sdk:sdk:1.0.8"
     compile "com.jingxi.smartlife.pad.sdk:utils:1.0.2"
     compile project(":Library")
 }

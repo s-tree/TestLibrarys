@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.intercom.sdk.IntercomManager;
+import com.intercom.sdk.NetClient;
 import com.jingxi.smartlife.pad.sdk.JXPadSdk;
 import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
@@ -136,7 +137,12 @@ public class DoorAccessMainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onBaseButtonClick(String buttonKey, String cmd, String time) {
+    public void onBaseButtonClick(NetClient netClient, String cmd, String time) {
+
+    }
+
+    @Override
+    public void onIntercomAppIntialized(boolean result) {
 
     }
 
@@ -146,7 +152,32 @@ public class DoorAccessMainActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onMediaStateChanged(int mediaType, int state) {
+
+    }
+
+    @Override
     public void onSnapshotReady(String familyID, String sessionID, String filePath) {
+
+    }
+
+    @Override
+    public void onButtonEvent(int event, String id, String sound) {
+
+    }
+
+    @Override
+    public void onButtonClick(String id) {
+
+    }
+
+    @Override
+    public void onRemoteServiceStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onIntercomClientInitializeResult(IntercomManager.Intercom intercom, boolean result) {
 
     }
 

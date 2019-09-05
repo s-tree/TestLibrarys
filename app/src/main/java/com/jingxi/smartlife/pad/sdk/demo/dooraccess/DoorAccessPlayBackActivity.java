@@ -8,21 +8,20 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.SeekBar;
 
-import com.intercom.sdk.IntercomConstants;
-import com.intercom.sdk.IntercomObserver;
+import com.intercom.sdk.RecordPlayer;
 import com.jingxi.smartlife.pad.sdk.JXPadSdk;
 import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
-import com.jingxi.smartlife.pad.sdk.utils.JXLogUtil;
 
 /**
  * 回放主页
  */
 public class DoorAccessPlayBackActivity extends AppCompatActivity implements
-        SurfaceHolder.Callback,SeekBar.OnSeekBarChangeListener ,IntercomObserver.OnPlaybackListener {
+        SurfaceHolder.Callback,SeekBar.OnSeekBarChangeListener,RecordPlayer.RecordPlayerHandler{
     private SeekBar seekBar;
     private SurfaceView surfaceView;
     private String sessionId;
+    private String videoPath;
     private DoorAccessManager doorAccessManager;
     private int seek;
     private int max;
@@ -40,10 +39,10 @@ public class DoorAccessPlayBackActivity extends AppCompatActivity implements
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         doorAccessManager = JXPadSdk.getDoorAccessManager();
-        doorAccessManager.addPlayBackListener(this);
 
         setContentView(R.layout.layout_activity_playback);
         sessionId = getIntent().getStringExtra("sessionId");
+        videoPath = getIntent().getStringExtra("videoPath");
         initView();
     }
 
@@ -60,12 +59,12 @@ public class DoorAccessPlayBackActivity extends AppCompatActivity implements
     }
 
     public void start(View v){
-        doorAccessManager.startPlayBack(sessionId);
+        doorAccessManager.startPlayBack(this,sessionId,videoPath);
     }
 
     public void resume(View v){
         int tempSeek = seek;
-        doorAccessManager.startPlayBack(sessionId);
+        doorAccessManager.startPlayBack(this,sessionId,videoPath);
         doorAccessManager.seekPlayBack(sessionId,tempSeek * 100 / max);
     }
 
@@ -109,26 +108,33 @@ public class DoorAccessPlayBackActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onMediaPlayEvent(String session_id, int event, long value) {
-        if(event == IntercomConstants.MediaPlayEvent.MediaPlayEventDuration){
-            max = (int) (value / unit);
-            seekBar.setMax(max);
+    public void onMediaDuration(String session_id, long duration) {
+        max = (int) (duration / unit);
+        seekBar.setMax(max);
+    }
+
+    @Override
+    public void onMediaProgress(String session_id, long progress) {
+        seek = (int) (progress / unit);
+        if(isTouchSeek){
+            return;
         }
-        else if(event == IntercomConstants.MediaPlayEvent.MediaPlayEventProgress){
-            seek = (int) (value / unit);
-            if(isTouchSeek){
-                return;
-            }
-            seekBar.setOnSeekBarChangeListener(null);
-            seekBar.setProgress(seek);
-            seekBar.setOnSeekBarChangeListener(this);
-        }
-        else if(event == IntercomConstants.MediaPlayEvent.MediaPlayEventCompleted){
-            seek = max;
-            seekBar.setOnSeekBarChangeListener(null);
-            seekBar.setProgress(max);
-            seekBar.setOnSeekBarChangeListener(this);
-            doorAccessManager.pausePlayBack(sessionId);
-        }
+        seekBar.setOnSeekBarChangeListener(null);
+        seekBar.setProgress(seek);
+        seekBar.setOnSeekBarChangeListener(this);
+    }
+
+    @Override
+    public void onMediaCompleted(String session_id, int reason) {
+        seek = max;
+        seekBar.setOnSeekBarChangeListener(null);
+        seekBar.setProgress(max);
+        seekBar.setOnSeekBarChangeListener(this);
+        doorAccessManager.pausePlayBack(sessionId);
+    }
+
+    @Override
+    public void onMediaVideoDimensionChanged(String session_id, int width, int height) {
+
     }
 }
