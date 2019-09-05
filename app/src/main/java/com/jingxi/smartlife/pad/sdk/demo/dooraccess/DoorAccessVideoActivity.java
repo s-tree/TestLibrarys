@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.intercom.sdk.IntercomConstants;
@@ -20,10 +21,11 @@ import com.jingxi.smartlife.pad.sdk.doorAccess.base.ui.DoorAccessConversationUI;
  * 门禁主页面
  */
 public class DoorAccessVideoActivity extends AppCompatActivity implements
-        SurfaceHolder.Callback,DoorAccessConversationUI {
+        SurfaceHolder.Callback,DoorAccessConversationUI ,View.OnClickListener{
     SurfaceView surfaceView;
     DoorAccessManager manager;
     String sessionId;
+    Button bt_record;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
         manager.addConversationUIListener(this);
 
         sessionId = getIntent().getStringExtra("sessionId");
+        bt_record = (Button) findViewById(R.id.bt_record);
+        bt_record.setOnClickListener(this);
     }
 
     @Override
@@ -117,5 +121,17 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.bt_record){
+            if(TextUtils.isEmpty(recordSession)){
+                startRecord();
+            }else{
+                stopRecord();
+                recordSession = "";
+            }
+        }
     }
 }

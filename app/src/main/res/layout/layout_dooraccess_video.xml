@@ -29,6 +29,13 @@
             android:layout_weight="1"
             android:onClick="updateSurface"
             android:text="updateSurface"/>
+
+        <Button
+            android:id="@+id/bt_record"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Record"/>
     </LinearLayout>
 
     <SurfaceView
