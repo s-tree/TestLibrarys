@@ -4,6 +4,7 @@
 |-------------|-----------|--------------|:-------------------:|
 |  2019-9-19  |   卞俊杰   |   1.1.8.23   |   第一次更新   |
 |  2019-9-20  |   卞俊杰   |   1.1.8.23   |   优化了文档框架，新增了安防部分文档   |
+|  2020-3-11  |   卞俊杰   |   1.1.10.38  |   更新了新版本   |
 
 ___
 
@@ -24,7 +25,7 @@ maven { url "https://raw.githubusercontent.com/s-tree/JxRepository/master/releas
 
 2.在app的build.gradle 中导入入门禁
 ```
-compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.1.8.23"
+compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.1.10.38"
 compile "com.jingxi.smartlife.pad.sdk:utils:1.0.2"
 ```
 
@@ -277,3 +278,8 @@ DoorAccessManager.getInstance().switchSecurityStatus(familyID);
 ```java
 DoorAccessManager.getInstance().cancelSecurityWarning(familyID);
 ```
+
+# 更新日志
++ 1.1.10.38
+   + doorDevice 新增了type， TYPE_WALL 表示围墙机，跟室外机区分开
+   + 查看监控时，参数 saveRecord 为 false 不会保存视频录制的数据了
