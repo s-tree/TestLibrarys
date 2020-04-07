@@ -5,6 +5,7 @@
 |  2019-9-19  |   卞俊杰   |   1.1.8.23   |   第一次更新   |
 |  2019-9-20  |   卞俊杰   |   1.1.8.23   |   优化了文档框架，新增了安防部分文档   |
 |  2020-3-11  |   卞俊杰   |   1.1.10.39  |   更新了新版本   |
+|  2020-4-1   |   卞俊杰   |   1.1.10.40  |   更新了新版本   |
 
 ___
 
@@ -25,7 +26,7 @@ maven { url "https://raw.githubusercontent.com/s-tree/JxRepository/master/releas
 
 2.在app的build.gradle 中导入入门禁
 ```
-compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.1.10.38"
+compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.1.10.42"
 compile "com.jingxi.smartlife.pad.sdk:utils:1.0.2"
 ```
 
@@ -42,6 +43,7 @@ compile 'com.google.code.gson:gson:2.8.5'
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 <uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 ```
 
 ___
@@ -62,6 +64,7 @@ DoorAccessManager.getInstance().init();
 DoorAccessManager.getInstance().setDoorAccessListener(this);
 DoorAccessManager.getInstance().addSecurityListener(this);
 DoorAccessManager.getInstance().addConversationUIListener(this);
+DoorAccessManager.getInstance().setListUIListener(this);
 ```
 
 3.启动服务
