@@ -1,0 +1,45 @@
+﻿{
+    "audio_play_agc_level": 0,
+    "audio_send_agc_level": 0,
+    "denoise": 0,
+    "transport_monitor_time": 30,
+    "audio_ptime": 40,
+    "blank_color": "128,0,0,0",
+    "capture": {
+        "width": 640,
+        "height": 480,
+        "fps": 25,
+        "format": 9,
+        "camera_name": {"type":0,"value":""}
+    },
+    "render":{
+        "format":13
+    },
+    "video_encode": {
+        "profile": 0,
+        "bitrate": 0,
+        "got_size": 300,
+        "qcompress": 0.6,
+        "qblur": 0.5,
+        "qmin": 10,
+        "qmax": 30,
+        "crf": 28,
+        "preset": "ultrafast",
+        "tune": "zerolatency",
+        "codec": 1
+    },
+    "device_audio": {
+        "sample_rate": 8000,
+        "channels": 1,
+        "bits_per_sample": 16
+    },
+    "record": {
+        "max_record_time": 0
+    },
+    "audio_buffer_size": 8192,
+    "audio_bus_path": "0.0.0.0:10005",
+    "max_session_wait_time": 30,
+    "intercom_max_session_connect_time": 300,
+    "special_p2p_devices": "p2p,1800,300",
+    "special_ext_devices": "ext,2592000,86400"
+}
