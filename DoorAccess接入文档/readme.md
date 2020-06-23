@@ -1,11 +1,21 @@
 # 慧管家门禁接入文档
 
-|   更新时间   |   更新人   |    版本号    |    更新内容    |
-|-------------|-----------|--------------|:-------------------:|
-|  2019-9-19  |   卞俊杰   |   1.1.8.23   |   第一次更新   |
-|  2019-9-20  |   卞俊杰   |   1.1.8.23   |   优化了文档框架，新增了安防部分文档   |
-|  2020-3-11  |   卞俊杰   |   1.1.10.39  |   更新了新版本   |
-|  2020-4-1   |   卞俊杰   |   1.1.10.40  |   更新了新版本   |
+## 更新日志
++ 1.1.8.23(2019-9-19)
+  + 优化了文档框架，新增了安防部分文档
+
+
++ 1.1.10.39(2020-3-11)
+  + 底层sdk版本更新为3.0.059869
+  + DoorDevice 新增了type TYPE_WALL,围墙机和室外机分开了
+  + 查看监控时可以选择不保存记录了
+
+
++ 1.2.1.64(2020-6-23)
+  + 底层sdk版本更新为3.0.0.62267
+  + 修复了设置回放监听后不能正确置空的问题
+  + 处理了全视通7寸双目室外机SIP信令不完整导致云端无视频的问题
+
 
 ___
 
@@ -26,7 +36,7 @@ maven { url "https://raw.githubusercontent.com/s-tree/JxRepository/master/releas
 
 2.在app的build.gradle 中导入入门禁
 ```
-compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.1.10.42"
+compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.2.1.64"
 compile "com.jingxi.smartlife.pad.sdk:utils:1.0.2"
 ```
 
@@ -281,8 +291,3 @@ DoorAccessManager.getInstance().switchSecurityStatus(familyID);
 ```java
 DoorAccessManager.getInstance().cancelSecurityWarning(familyID);
 ```
-
-# 更新日志
-+ 1.1.10.39
-   + doorDevice 新增了type， TYPE_WALL 表示围墙机，跟室外机区分开
-   + 修复了一些小问题，优化了一些sdk的性能
