@@ -1,5 +1,7 @@
 package com.jingxi.smartlife.pad.sdk.demo.dooraccess;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +46,14 @@ public class DoorAccessPlayBackActivity extends AppCompatActivity implements
         sessionId = getIntent().getStringExtra("sessionId");
         videoPath = getIntent().getStringExtra("videoPath");
         initView();
+
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+        audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,
+                audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL),
+                0);
+        audioManager.setSpeakerphoneOn(true);
     }
 
     @Override
@@ -59,13 +69,18 @@ public class DoorAccessPlayBackActivity extends AppCompatActivity implements
     }
 
     public void start(View v){
-        doorAccessManager.startPlayBack(this,sessionId,videoPath);
+//        doorAccessManager.startPlayBack(this,sessionId,"",1);
+        doorAccessManager.startPlayBack(this,sessionId,videoPath,1);
+        doorAccessManager.switchPlaybackAudio(this,true);
+        doorAccessManager.enablePlaybackAudioTrack(this,true,true);
+        doorAccessManager.enablePlaybackAudioTrack(this,false,true);
     }
 
     public void resume(View v){
         int tempSeek = seek;
-        doorAccessManager.startPlayBack(this,sessionId,videoPath);
+        doorAccessManager.startPlayBack(this,sessionId,videoPath,1);
         doorAccessManager.seekPlayBack(sessionId,tempSeek * 100 / max);
+        doorAccessManager.switchPlaybackAudio(this,true);
     }
 
     public void stop(View v){

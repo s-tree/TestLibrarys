@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp">
+
+    <Button
+        android:id="@+id/initData"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="initData"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="测试部署"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_below="@+id/initData"/>
+
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="返回"
+        android:drawableStart="@drawable/ic_arrow_back_black_24dp"
+        android:layout_below="@+id/initData"/>
+
+    <TextView
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:text="完成"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_below="@+id/initData"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/back"
+        android:layout_marginTop="30dp"/>
+
+</RelativeLayout>

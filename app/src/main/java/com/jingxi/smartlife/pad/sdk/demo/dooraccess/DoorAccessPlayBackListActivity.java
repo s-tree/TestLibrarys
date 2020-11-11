@@ -57,9 +57,9 @@ public class DoorAccessPlayBackListActivity extends AppCompatActivity implements
      * 单次会话可能会有多个视频记录，表现为  {@link DoorRecordBean#getRecordList()}
      */
     private void getData(){
-//        List<DoorRecordBean>  recordBeans = manager.getHistoryList(DoorAccessMainActivity.familyID,DoorRecordBean.RECORD_TYPE_DOOR,0,pageSize);
+        List<DoorRecordBean>  recordBeans = manager.getHistoryListByType("GS40K36G05420000",DoorRecordBean.RECORD_TYPE_DOOR,0,pageSize);
 //        List<DoorRecordBean>  recordBeans = manager.getHistoryList(DoorAccessMainActivity.familyID,DoorRecordBean.RECORD_TYPE_P2P,0,pageSize);
-        List<DoorRecordBean>  recordBeans = manager.getHistoryListByType(DoorAccessMainActivity.familyID,DoorRecordBean.RECORD_TYPE_EXT,0,pageSize);
+//        List<DoorRecordBean>  recordBeans = manager.getHistoryListByType("GS40K36G05420000",DoorRecordBean.RECORD_TYPE_EXT,0,pageSize);
         for(DoorRecordBean recordBean : recordBeans){
             List<RecordVideoBean> videoBeans = recordBean.getRecordList();
             if(videoBeans.size() == 0){

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.intercom.sdk.IntercomConstants;
+import com.intercom.sdk.IntercomManager;
 import com.intercom.sdk.NetClient;
 import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
@@ -79,6 +80,7 @@ public class DoorAccessExtActivity extends AppCompatActivity implements AdapterV
          * unInit 后直接就 init 会导致 init 不成功，建议延迟200 毫秒后再 init
          */
         DoorAccessManager.getInstance().unInit();
+        IntercomManager.getInstance().release();
         Observable.timer(200, TimeUnit.MILLISECONDS)
                 .subscribe(new Consumer<Long>() {
                     @Override

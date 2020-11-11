@@ -9,21 +9,39 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a"
+        }
     }
+    signingConfigs {
+        release {
+            storeFile file("smartliferelease.keystore")
+            storePassword "64z7IJnI4WFAOjX5CO3HyQsxiLCw5jtK"
+            keyAlias "smartlifereleasekey"
+            keyPassword "cscu5WWZ5nPkFthV3H1c8Rtglfk5DRC9"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.1.8.23"
-    compile "com.jingxi.smartlife.pad.sdk:sdk:1.0.8"
+//    compile 'com.jingxi.smartlife.pad.sdk:doorAccess:1.2.3.93.test'
+//    compile "com.jingxi.smartlife.pad.sdk:sdk:1.0.8"
     compile "com.jingxi.smartlife.pad.sdk:utils:1.0.2"
+    compile project(":DoorAccess")
+    compile project(":JXConfigure")
+    compile project(":JXPadSDK")
     compile project(":Library")
 }

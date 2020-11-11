@@ -76,8 +76,8 @@ public class NeighborHoodActivity extends AppCompatActivity {
         setContentView(R.layout.layout_neighbor_main);
         textView = (TextView) findViewById(R.id.textView);
         JXPadSdk.init(getApplication());
-        JXPadSdk.setAccid("y_p_1241_18021651812");
-        JXPadSdk.setAppKey("userKey:d38bf3b32e09484b83673c90772442cc","6a591fc521f347bfad171fd2932e60d6");
+        JXPadSdk.setAccid("y_sl_m_18912246787");
+        JXPadSdk.setAppKey("userKey:c578dcb17cbf46429430e1804cfb90d9","cee5bf2fdf7a4f1c8c0c8792cf8eec1c");
         JXPadSdk.setCommunityId("1");
         neighborManager = JXPadSdk.getNeighborManager();
     }

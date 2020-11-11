@@ -19,11 +19,7 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".dooraccess.DoorAccessMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".dooraccess.DoorAccessVideoActivity"/>
         <activity android:name=".dooraccess.DoorAccessPlayBackListActivity"/>
@@ -33,6 +29,13 @@
         <activity android:name=".neighbor.NeighborHoodActivity">
         </activity>
         <activity android:name=".push.PushMainActivity">
+        </activity>
+        <activity android:name=".configure.ConfigureActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

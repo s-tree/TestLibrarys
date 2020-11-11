@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -11,11 +12,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.intercom.sdk.IntercomConstants;
+import com.intercom.sdk.IntercomManager;
 import com.jingxi.smartlife.pad.sdk.JXPadSdk;
 import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.bean.DoorEvent;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.ui.DoorAccessConversationUI;
+
+import java.io.File;
 
 /**
  * 门禁主页面
@@ -32,6 +36,7 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dooraccess_video);
         surfaceView = (SurfaceView) findViewById(R.id.surface);
+        surfaceView.getHolder().addCallback(this);
 
         manager = JXPadSdk.getDoorAccessManager();
         manager.addConversationUIListener(this);
@@ -67,6 +72,31 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
 
     public void accept(View v){
         manager.acceptCall(sessionId);
+//        sendAnswerMedia(sessionId,true);
+//        DoorAccessManager.getInstance().enableLocalToRemoteVideo(DoorAccessMainActivity.familyID,sessionId,false);
+//        DoorAccessManager.getInstance().enableLocalToRemoteAudio(DoorAccessMainActivity.familyID,sessionId,false);
+    }
+
+
+    /**
+     * 准备访客留言时播放音频
+     * @param session
+     * @param isEnable
+     */
+    public static void sendAnswerMedia(String session,boolean isEnable){
+        Bundle bundle = new Bundle();
+        bundle.putString("scheme", IntercomConstants.kIntercomScheme);
+        bundle.putBoolean("enable",isEnable);
+        bundle.putString("command","autoanswer");
+        bundle.putString("session_id",session);
+        bundle.putString("message", "/sdcard/smartlife/mFile/plz_message.pcm");
+        File file = new File("/sdcard/smartlife/mFile/plz_message.pcm");
+        Log.w("test_bug","file = " + file.getAbsolutePath() + " isExist = " + file.exists());
+        IntercomManager.Intercom intercom = IntercomManager.getInstance().getIntercom(DoorAccessMainActivity.familyID);
+        if(intercom == null){
+            return;
+        }
+        intercom.sendIntercomCommand(bundle);
     }
 
     public void hangup(View v){
