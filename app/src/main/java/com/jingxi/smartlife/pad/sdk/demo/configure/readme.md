@@ -1,7 +1,7 @@
 # 慧管家室内机社区服务器部署方案文档
 
 ## 更新日志
-+ 1.0.0(2020-11-11)
++ 1.0.1(2020-11-11)
   + 第一版更新
 
 Demo 地址 https://github.com/s-tree/JxSDKDemo/tree/master/app/src/main/java/com/jingxi/smartlife/pad/sdk/demo/configure
@@ -18,7 +18,7 @@ maven { url "https://raw.githubusercontent.com/s-tree/JxRepository/master/releas
 
 2.在app的build.gradle 中导入项目
 ```
-compile "com.jingxi.smartlife.pad.sdk:configure:1.0.0"
+compile "com.jingxi.smartlife.pad.sdk:configure:1.0.1"
 ```
 
 3.导入 fastJson,rxJava2,rxAndroid2,OKHttp3 必要库
