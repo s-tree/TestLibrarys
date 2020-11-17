@@ -300,11 +300,18 @@ DoorAccessManager.getInstance().cancelSecurityWarning(familyID);
 ---
 
 ## 六.部分说明
-### 1.sdk配置都在DootKit.Options 中,通过DoorKit.getOptions() 获取对象，DoorKit.init(Options options) 生效
-### 2.室内机设备是MTK平台时，需要设置 options.media_codec_encoder_color_format = 0x13,室内机设备是RK 平台时，需要设置 options.media_codec_encoder_color_format = 0x15
-### 3.部分设备音频采样可能不支持默认参数，需要额外配置 WebRtcAudioUtils.setDefaultSampleRateHz(32000);
-### 4.部分设备有多麦情况下，默认配置采集不到音频数据，需要额外配置 WebRtcAudioRecord.setAudioSource(MediaRecorder.AudioSource.MIC);
-### 5.视频编码解码应尽量使用硬件编码，设置 video_decode_engine = 1
-### 6.室内机如果有硬件降噪消回芯片，则设置 disable_aec = true 来 屏蔽软件消回，如果没有硬件消回芯片，则设置 为 false 启用软件消回，同时调整 aec_latency 参数，来获取最佳效果，京希室内机测试 60 为最佳
-### 7.室内机设备性能较差时，应调低视频传输帧率，capture_video_fps 和 frame_rate 两个参数,默认为25，也可以调整video_encode_codec_width 及 video_encode_codec_height 来缩减编码的视频尺寸，默认为 640 * 480
-### 8.设备如果是移动端或其他需要竖屏展示时，应设置 screen_portrait = true
+1.sdk配置都在DootKit.Options 中,通过DoorKit.getOptions() 获取对象，DoorKit.init(Options options) 生效
+
+2.室内机设备是MTK平台时，需要设置 options.media_codec_encoder_color_format = 0x13,室内机设备是RK 平台时，需要设置 options.media_codec_encoder_color_format = 0x15
+
+3.部分设备音频采样可能不支持默认参数，需要额外配置 WebRtcAudioUtils.setDefaultSampleRateHz(32000);
+
+4.部分设备有多麦情况下，默认配置采集不到音频数据，需要额外配置 WebRtcAudioRecord.setAudioSource(MediaRecorder.AudioSource.MIC);
+
+5.视频编码解码应尽量使用硬件编码，设置 video_decode_engine = 1
+
+6.室内机如果有硬件降噪消回芯片，则设置 disable_aec = true 来 屏蔽软件消回，如果没有硬件消回芯片，则设置 为 false 启用软件消回，同时调整 aec_latency 参数，来获取最佳效果，京希室内机测试 60 为最佳
+
+7.室内机设备性能较差时，应调低视频传输帧率，capture_video_fps 和 frame_rate 两个参数,默认为25，也可以调整video_encode_codec_width 及 video_encode_codec_height 来缩减编码的视频尺寸，默认为 640 * 480
+
+8.设备如果是移动端或其他需要竖屏展示时，应设置 screen_portrait = true
