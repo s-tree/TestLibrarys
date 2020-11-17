@@ -25,27 +25,27 @@
 ___
 
 ## 概念介绍
-+ familyId : 设备与底座配对的唯一id，由底座部署完后提交到服务器
-+ buttonKey : 用于区分多分机时的设备，对应各自底座中的buttonKey，默认主机是 01
-+ door : 家庭与室外机（单元门口机，小区围墙机，物业中心管理机等室外机）
-+ p2p : 户户通(社区间 家庭呼叫家庭)
-+ ext : 室内通(家庭中 分机呼叫分机)
++ `familyId`  设备与底座配对的唯一id，由底座部署完后提交到服务器
++ `buttonKey`  用于区分多分机时的设备，对应各自底座中的buttonKey，默认主机是 01
++ `door`   家庭与室外机（单元门口机，小区围墙机，物业中心管理机等室外机）
++ `p2p`  户户通(社区间 家庭呼叫家庭)
++ `ext`  室内通(家庭中 分机呼叫分机)
 
 ___
 
 ## 一 接入
-1.项目的build.gradle 中加入仓库url
+1.项目的`build.gradle` 中加入仓库url
 ```
 maven { url "https://raw.githubusercontent.com/s-tree/JxRepository/master/releases/"}
 ```
 
-2.在app的build.gradle 中导入入门禁
+2.在`app`的`build.gradle` 中导入入门禁
 ```
 compile "com.jingxi.smartlife.pad.sdk:doorAccess:1.2.4.109"
 compile "com.jingxi.smartlife.pad.sdk:utils:1.0.2"
 ```
 
-3.导入 fastJson 、 lite-orm 、gson 库(sdk 内部必要库)
+3.导入 `fastJson` 、 `lite-orm` 、`gson` 库(sdk 内部必要库)
 ```
 compile 'com.alibaba:fastjson:1.2.59'
 compile 'com.google.code.gson:gson:2.8.5'
@@ -69,12 +69,12 @@ ___
 JXContextWrapper.context = application;
 ```
 
-2.DoorAccessManager 是门禁功能接口类，初始化过程在 getInstance() 中通过构造方法进行，最好预先初始化一次
+2.`DoorAccessManager` 是门禁功能接口类，初始化过程在 getInstance() 中通过构造方法进行，最好预先初始化一次
 ```java
 DoorAccessManager.getInstance().init();
 ```
 
-3.设置回调，具体参考api中的 DoorAccessListener,DoorAccessListUI,DoorAccessConversationUI
+3.设置回调，具体参考api中的 `DoorAccessListener`,`DoorAccessListUI`,`DoorAccessConversationUI`
 ```java
 DoorAccessManager.getInstance().setDoorAccessListener(this);
 DoorAccessManager.getInstance().addSecurityListener(this);
@@ -121,7 +121,7 @@ DoorAccessManager.getInstance().hangupCall(sessionId);
 
 ### 2.门禁外呼(door)
 #### (1).获取设备列表
-DoorDevice 的设备类型请查看 DoorDevice.getMyDeviceType()
+`DoorDevice` 的设备类型请查看 `DoorDevice.getMyDeviceType()`
 
 ```java
 DoorAccessManager.getInstance().getDevices(familyID);
@@ -133,7 +133,7 @@ String sessionId = DoorAccessManager.getInstance().monitor(familyID,doorDevice);
 ```
 sessionId 是此次会话session，需要保存，之后的操作中需要使用
 
-#### (3).事件更新，具体参考 DoorAccessConversationUI 及 demo
+#### (3).事件更新，具体参考 `DoorAccessConversationUI` 及 demo
 
 ### 3.户户通外呼
 #### (1).判断是否支持户户通
@@ -149,7 +149,7 @@ boolean isSupportP2P = DoorAccessManager.getInstance().isSupportP2P(familyID);
 sessionID = DoorAccessManager.getInstance().monitorP2P(familyID,number,true);
 ```
 
-#### (4).事件更新，具体参考 DoorAccessConversationUI 及 demo
+#### (4).事件更新，具体参考 `DoorAccessConversationUI` 及 demo
 
 ### 4.室内通通话
 #### (1).判断是否支持室内通
@@ -177,17 +177,17 @@ List<ExtDeviceBean> extDevices = DoorAccessManager.getInstance().getExtDevices(f
 #### (4).外呼
 室内通外呼有两种模式
 + 直接呼叫
-  + isMonitor == false
+  + `isMonitor` == `false`
     呼叫时对方会收到ringing 消息,需要对方接听可才可通话
 + 监控模式
-  + isMonitor == true
+  + `isMonitor` == `true`
     呼叫时不需要对方接听，可以监控对方的画面与声音，不会将本机的画面与声音传递过去，同时对方页面应该没有任何反应
 
 ```java
 chatSession = DoorAccessManager.getInstance().callExt(familyID,deviceBean,isMonitor);
 ```
 
-#### (5).事件更新，具体参考 DoorAccessConversationUI 及 demo
+#### (5).事件更新，具体参考 `DoorAccessConversationUI` 及 demo
 
 #### (6).禁止将本地摄像头发送给对方
 ```java
@@ -206,7 +206,7 @@ DoorAccessManager.getInstance().enableRemoteToLocalAudio(familyID,sessionId,fals
 
 ### 5.收到呼叫
 #### (1).获取呼叫来源(门禁、户户通、室内通)
-参考DoorAccessListener.onRinging()
+参考`DoorAccessListener.onRinging()`
 ```java
 int callType = DoorSessionManager.getRingingType(sessionId);
 if(callType == DoorEvent.TYPE_DOOR){
@@ -234,8 +234,8 @@ ___
 
 ## 四.回放记录
 ### 1.获取来访纪录
-+ 外呼时 needSaveRecord 参数传入true 或者 在通话时录制了视频才会有记录
-+ 接听时 可在 DoorAccessListener.onSnapshotReady() 或者 DoorAccessConversationUI.startTransPort() 中自动开启录制
++ 外呼时 `needSaveRecord` 参数传入true 或者 在通话时录制了视频才会有记录
++ 接听时 可在 `DoorAccessListener.onSnapshotReady()` 或者 `DoorAccessConversationUI.startTransPort()` 中自动开启录制
 
 ```java
 //获取门禁的通话纪录，从0到50 (按时间倒序)
@@ -250,7 +250,7 @@ List<RecordVideoBean> recordVideoList = doorRecordBean.getRecordList();
 ```
 
 ### 3.回放
-需要传入播放回调 RecordPlayer.RecordPlayerHandler
+需要传入播放回调 `RecordPlayer.RecordPlayerHandler`
 ```java
 DoorAccessManager.getInstance().startPlayBack(playHandler,playSession,recordVideoBean.videoPath);
 ```
@@ -300,18 +300,18 @@ DoorAccessManager.getInstance().cancelSecurityWarning(familyID);
 ---
 
 ## 六.部分说明
-1.sdk配置都在DootKit.Options 中,通过DoorKit.getOptions() 获取对象，DoorKit.init(Options options) 生效
+1.sdk配置都在`DootKit.Options` 中,通过`DoorKit.getOptions()` 获取对象，`DoorKit.init(Options options)` 生效
 
-2.室内机设备是MTK平台时，需要设置 options.media_codec_encoder_color_format = 0x13,室内机设备是RK 平台时，需要设置 options.media_codec_encoder_color_format = 0x15
+2.视频编码解码支持19 和 21，默认是21,部分设备不支持21时，需要设置 `options.media_codec_encoder_color_format = 0x13`
 
-3.部分设备音频采样可能不支持默认参数，需要额外配置 WebRtcAudioUtils.setDefaultSampleRateHz(32000);
+3.部分设备音频采样可能不支持默认参数，需要额外配置 `WebRtcAudioUtils.setDefaultSampleRateHz(32000)`;
 
-4.部分设备有多麦情况下，默认配置采集不到音频数据，需要额外配置 WebRtcAudioRecord.setAudioSource(MediaRecorder.AudioSource.MIC);
+4.部分设备有多麦情况下，默认配置采集不到音频数据，需要额外配置 `WebRtcAudioRecord.setAudioSource(MediaRecorder.AudioSource.MIC)`;
 
-5.视频编码解码应尽量使用硬件编码，设置 video_decode_engine = 1
+5.视频编码解码应尽量使用硬件编码，设置 `options.video_decode_engine = 1`
 
-6.室内机如果有硬件降噪消回芯片，则设置 disable_aec = true 来 屏蔽软件消回，如果没有硬件消回芯片，则设置 为 false 启用软件消回，同时调整 aec_latency 参数，来获取最佳效果，京希室内机测试 60 为最佳
+6.室内机如果有硬件降噪消回芯片，则设置 `options.disable_aec = true` 来 屏蔽软件消回，如果没有硬件消回芯片，则设置 为 false 启用软件消回，同时调整 `aec_latency` 参数，来获取最佳效果，京希室内机测试 60 为最佳
 
-7.室内机设备性能较差时，应调低视频传输帧率，capture_video_fps 和 frame_rate 两个参数,默认为25，也可以调整video_encode_codec_width 及 video_encode_codec_height 来缩减编码的视频尺寸，默认为 640 * 480
+7.室内机设备性能较差时，应调低视频传输帧率，`options.capture_video_fps` 和 `options.frame_rate` 两个参数,默认为`25`，也可以调整`options.video_encode_codec_width` 及 `options.video_encode_codec_height` 来缩减编码的视频尺寸，默认为 `640 * 480`
 
-8.设备如果是移动端或其他需要竖屏展示时，应设置 screen_portrait = true
+8.设备如果是移动端或其他需要竖屏展示时，应设置 `options.screen_portrait = true`
