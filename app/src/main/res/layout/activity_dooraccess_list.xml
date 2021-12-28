@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:orientation="vertical">
 
         <Button
@@ -36,6 +36,12 @@
             android:text="toExt"
             android:onClick="toExt"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="clearAllRecord"
+            android:onClick="clearAllRecord"/>
+
     </LinearLayout>
     
     <TextView
@@ -50,7 +56,6 @@
         android:hint="输入要呼叫的户户通房号"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:inputType="number"
         android:background="@android:color/white"/>
 
     <ListView

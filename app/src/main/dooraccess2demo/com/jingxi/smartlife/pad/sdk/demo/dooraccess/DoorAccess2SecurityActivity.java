@@ -1,14 +1,13 @@
 package com.jingxi.smartlife.pad.sdk.demo.dooraccess;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.intercom.sdk.SecurityMessage;
-import com.intercom.sdk.SmartHomeManager;
+import com.intercom.client.SecurityMessage;
+import com.intercom.client.SmartHomeManager;
 import com.jingxi.smartlife.pad.sdk.JXPadSdk;
 import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
@@ -16,7 +15,7 @@ import com.jingxi.smartlife.pad.sdk.doorAccess.base.DoorSecurityUtil;
 
 import java.util.List;
 
-public class DoorAccessSecurityActivity extends AppCompatActivity implements DoorSecurityUtil.OnSecurityChangedListener{
+public class DoorAccess2SecurityActivity extends AppCompatActivity implements DoorSecurityUtil.OnSecurityChangedListener{
     TextView textView;
 
     @Override
@@ -29,11 +28,11 @@ public class DoorAccessSecurityActivity extends AppCompatActivity implements Doo
         /**
          * 查询安防状态
          */
-        doorAccessManager.querySecurityStatus(DoorAccessMainActivity.familyID);
+        doorAccessManager.querySecurityStatus(DoorAccess2MainActivity.familyID);
         /**
          * 取消报警
          */
-        doorAccessManager.cancelSecurityWarning(DoorAccessMainActivity.familyID);
+        doorAccessManager.cancelSecurityWarning(DoorAccess2MainActivity.familyID);
     }
 
     public void toPlayBack(View v){
@@ -68,8 +67,8 @@ public class DoorAccessSecurityActivity extends AppCompatActivity implements Doo
      * @param device
      */
     @Override
-    public void onAlarm(String familyDockSn, List<SecurityMessage.StateBean> stateBeans, SmartHomeManager.SecurityDevice device) {
-        textView.setText("安防设备报警 ： " + familyDockSn + " 设备 " + stateBeans.get(0).getAlias());
+    public void onAlarm(String familyDockSn, SecurityMessage securityMessage, SmartHomeManager.SecurityDevice device) {
+        textView.setText("安防设备报警 ： " + familyDockSn + " 设备 " + securityMessage.getState().get(0).getAlias());
     }
 
     /**

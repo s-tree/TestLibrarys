@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <!-- 用于发送组播组播 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
 
     <application
         android:name=".DemoApplication"
@@ -16,27 +19,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.MainActivity">
         </activity>
-        <activity android:name=".dooraccess.DoorAccessMainActivity">
-
-        </activity>
-        <activity android:name=".dooraccess.DoorAccessVideoActivity"/>
-        <activity android:name=".dooraccess.DoorAccessPlayBackListActivity"/>
-        <activity android:name=".dooraccess.DoorAccessPlayBackActivity"/>
-        <activity android:name=".dooraccess.DoorAccessSecurityActivity"/>
-        <activity android:name=".dooraccess.DoorAccessExtActivity"/>
-        <activity android:name=".neighbor.NeighborHoodActivity">
-        </activity>
-        <activity android:name=".push.PushMainActivity">
-        </activity>
-        <activity android:name=".configure.ConfigureActivity">
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccessLauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccessMainActivity">
+        </activity>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccessVideoActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccessPlayBackListActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccessPlayBackActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccessSecurityActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccessExtActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.neighbor.NeighborHoodActivity">
+        </activity>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.push.PushMainActivity">
+        </activity>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.configure.ConfigureActivity">
+        </activity>
+
+
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccess2LauncherActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccess2MainActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccess2VideoActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccess2PlayBackListActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccess2PlayBackActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccess2SecurityActivity"/>
+        <activity android:name="com.jingxi.smartlife.pad.sdk.demo.dooraccess.DoorAccess2ExtActivity"/>
     </application>
 
 </manifest>

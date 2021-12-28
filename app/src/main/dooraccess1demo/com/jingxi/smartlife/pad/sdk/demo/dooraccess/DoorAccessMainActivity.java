@@ -1,9 +1,15 @@
 package com.jingxi.smartlife.pad.sdk.demo.dooraccess;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -27,9 +33,12 @@ import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.DoorKit;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.bean.DoorDevice;
+import com.jingxi.smartlife.pad.sdk.doorAccess.base.bean.DoorRecordBean;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.ui.DoorAccessListUI;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.ui.DoorAccessListener;
+import com.jingxi.smartlife.pad.sdk.utils.JXContextWrapper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,17 +47,25 @@ import java.util.List;
  */
 public class DoorAccessMainActivity extends AppCompatActivity implements
         DoorAccessListUI,DoorAccessListener,AdapterView.OnItemClickListener,MCUController.MCUControllerHandler{
+    private final String TAG = "DoorAccessMainActivity_LOG";
+
     ListView listView ;
     ListAdapter listAdapter;
     TextView textView;
     EditText numberEdit;
     List<DoorDevice> mDevices = new ArrayList<>();
     DoorAccessManager manager;
-//    public static String familyID = "001904107CF50000";
-//    public static String familyID = "A000000000150000";
-//    public static String familyID = "GS40K36G09050000";
-    public static String familyID = "GS40K36G11110000";
-    public static String buttonKey = "01";
+//    public static String familyID = "GT40K36G00000000";
+    public static String familyID = "1234567890123456";
+//    public static String familyID = "GS40K36G07650000";
+//    public static String familyID = "GR80817070001650";
+//    public static String familyID = "GS40000000000000";
+    //242_01010306
+//    public static String familyID = "00200521C8DA0000";
+//242_01010307
+//    public static String familyID = "002012088A070000";
+//    public static String buttonKey = "199";
+    public static String buttonKey = "177";
     public static final String SERVER_WORK_DIR = "sdcard/data/doorkeeper/server/conf";
 
     @Override
@@ -59,68 +76,135 @@ public class DoorAccessMainActivity extends AppCompatActivity implements
         listView.setOnItemClickListener(this);
         textView = (TextView) findViewById(R.id.textView);
         numberEdit = (EditText) findViewById(R.id.number);
+        Log.w(TAG,"DoorAccessMainActivity onCreate");
 
-        familyID = DoorAccessManager.getInstance().getLocalFamilyId(SERVER_WORK_DIR);
+        if(requestPermission()){
+            init();
+        }else{
+            Log.w(TAG,"DoorAccessMainActivity onCreate requestPermission faild" );
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    private void init(){
+        /**
+         * 多麦克风时
+         */
+//        WebRtcAudioRecord.setAudioSource(MediaRecorder.AudioSource.MIC);
+        /**
+         * 麦克风对采样率有要求
+         */
+//        WebRtcAudioUtils.setDefaultSampleRateHz(32000);
+        /**
+         * 室内机通过此方法获取到familyId
+         */
+//        familyID = DoorAccessManager.getInstance().getLocalFamilyId(SERVER_WORK_DIR);
 
         DoorKit.Options options = DoorKit.getOptions();
+//        options.proxyServerUrl = "http://transit.hongyanyun.cn:9989/keepalive";
+//        options.proxyServerUrl = "http://transit.hongyanyun.cn:9989/keepalive";
+//        options.intercomServerUrl = "http://106.13.190.88:9990/opensip/v2/register";
 //        options.sn = "GR8081707000162";
 
-        options.systemId = Build.SERIAL;
+//        options.platform = IntercomConstants.NetClientSubType.NetClientSubTypeMobile;
+        options.platform = IntercomConstants.NetClientSubType.NetClientSubTypePad;
+
+        options.logDebug = true;
+//        options.systemId = Build.SERIAL;
+//        options.systemId = "GS40K36G1111";
+        options.systemId = "GR8081707000165";
+//        options.systemId = "GR8081707000000";
         options.sn = Build.SERIAL;
-        options.video_decode_engine = 1;
-        options.video_encode_engine = 1;
+        options.sslCertPath = "";
+        options.alias = "测试机器";
+//        options.video_decode_engine = 1;
+//        options.video_encode_engine = 1;
+        options.video_decode_engine = 0;
+        options.video_encode_engine = 0;
+        options.maxRecordCount = 1;
 //        options.audio_engine = IntercomConstants.AudioEngine.AudioEngine_OpenSLES;
         options.audio_engine = IntercomConstants.AudioEngine.AudioEngine_JAVA;
-        options.max_audio_delay_us = 50000;
-        options.intercomServerUrl = "";
-        options.proxyServerUrl = "";
-        options.proxykeepalive = 24 * 60 * 60;
-        options.proxyRetryInterval = 24 * 60 * 60;
-        options.disable_aec = false;
-        options.aec_latency = 0;
-        options.lan_broadcast_exclude_interface = "eth1";
-        options.master_device = true;
+        options.max_audio_delay_us = 120000;
+        options.audio_samplerate = 8000;
+//        options.intercomServerUrl = "";
+//        options.proxyServerUrl = "";
+
+//        options.disable_aec = false;
+//        options.aec_latency = 0;
+        options.disable_aec = true;
+        options.audio_send_denoise = true;
+        options.audio_play_denoise = true;
+
+        options.lan_broadcast_exclude_interface = "";
+        options.master_device = false;
+
+        options.capture_video_fps = 15;
+//        options.video_encode_codec_width = 320;
+//        options.video_encode_codec_height = 240;
+        options.frame_rate = 15;
+//        options.capture_video_width = 1280;
+//        options.capture_video_height = 960;
+
+        options.screen_portrait = false;
+//        options.media_codec_encoder_color_format = 0x13;
+
+        options.max_session_wait_time = 2592000;
+
+//        PathUtils.setPrivateDataDirectorySuffix("jx_indoor",this);
         DoorKit.init(options);
 
-        JXPadSdk.init(getApplication());
-        JXPadSdk.initDoorAccess();
+        JXContextWrapper.context = getApplication();
         manager = JXPadSdk.getDoorAccessManager();
-        manager.setListUIListener(this);
-        manager.setDoorAccessListener(this);
+        DoorAccessManager.getInstance().setListUIListener(this);
+        DoorAccessManager.getInstance().setDoorAccessListener(this);
+        Log.w(TAG,"will init");
+        /**
+         * 部分场景下有出现app退出后底层线程没有正确停止，导致下次初始化时参数不正确
+         */
+        manager.unInit();
         manager.init();
+        /**
+         ZxIJ-XtNN-Ptul-bFfg
+         zy20-AVMe-WFtC-1y7e
+         zz1d-3Y0B-0VVf-n8R1
+         Zz2p-GlYK-Zt2D-Lqh6
+         Zz3r-axB9-gm1I-qWZd
+         zzA5-2a9x-BWYi-36rm
+         ZZHV-9rvh-QY90-HAIF
+         ZZRR-9Vai-7aY0-i6xr
+         ZZXS-wc9Y-kewl-emtY
+         */
+//        IntercomManager.getInstance().active("123456","123456","ZZRR-9Vai-7aY0-i6xr");
+        /**
+         * GS40K36G1111
+         */
+//        IntercomManager.getInstance().active("123456","123456","ZZXS-wc9Y-kewl-emtY");
+        //gr808***165
+//        IntercomManager.getInstance().active("123456","123456","ZxIJ-XtNN-Ptul-bFfg");
+        //gr808***000
+//        IntercomManager.getInstance().active("123456","123456","0bew-Q4Th-sZ7U-XnzR");
+
+        Log.w(TAG,"after init");
+        Log.w(TAG,"DoorAccessMainActivity onCreate init familyId = " + familyID );
         manager.startFamily(familyID,buttonKey);
 
         ((Button)findViewById(R.id.callP2PV)).setText(familyID + "\t" + buttonKey + "\tcallP2P");
         setData();
 
-//        IntercomConfigure.MCUConf mcuConf = new IntercomConfigure.MCUConf("60000:10000:1",
-//                "/dev/ttyS0:115200",
-//                "0.0.0.0:10004");
-//        String  buttonConf = "[\n" +
-//                "        {\"key\":5,\"id\":\"pickup\",\"long_pressed_time\":5000,\"repeat_mini_time\":500,\"sound\":\"key\", \"action\":[{\"type\":2,\"event\":\"button:pickup\"},{\"type\":3,\"event\":\"button:service\"}]},\n" +
-//                "        {\"key\":1,\"id\":\"unlock\",\"long_pressed_time\":30000,\"repeat_mini_time\":500,\"sound\":\"key\",\"action\":[{\"type\":2,\"event\":\"button:unlock\"},{\"type\":3,\"event\":\"button:resetdevice\"}]},\n" +
-//                "        {\"key\":4,\"id\":\"sos\",\"long_pressed_time\":0,\"repeat_mini_time\":500, \"sound\":\"key\",\"action\":[{\"type\":2,\"event\":\"button:sos\"}]},\n" +
-//                "        {\"key\":3,\"id\":\"monitor\",\"long_pressed_time\":0,\"repeat_mini_time\":500,\"sound\":\"key\", \"action\":[{\"type\":2,\"event\":\"button:monitor\"}]},\n" +
-//                "        {\"key\":2,\"id\":\"user\",\"long_pressed_time\":5000,\"repeat_mini_time\":500,\"sound\":\"key\",\"action\":[{\"type\":2,\"event\":\"button:user\"},{\"type\":3,\"event\":\"button:reset\"}]},\n" +
-//                "        {\"key\":6,\"id\":\"pad\",\"long_pressed_time\":0,\"repeat_mini_time\":0,\"sound\":\"\", \"action\":[{\"type\":1,\"event\":\"button:pad_near\"},{\"type\":2,\"event\":\"button:pad_leave\"}]},\n" +
-//                "        {\"key\":8,\"id\":\"volume+\",\"long_pressed_time\":0,\"repeat_mini_time\":500,\"sound\":\"key\", \"action\":[{\"type\":2,\"event\":\"button:volume+\"}]},\n" +
-//                "        {\"key\":7,\"id\":\"volume-\",\"long_pressed_time\":0,\"repeat_mini_time\":500,\"sound\":\"key\", \"action\":[{\"type\":2,\"event\":\"button:volume-\"}]},\n" +
-//                "        {\"key\":9,\"id\":\"human\",\"long_pressed_time\":0,\"repeat_mini_time\":0,\"sound\":\"\", \"action\":[{\"type\":1,\"event\":\"button:human_near\"}]}\n" +
-//                "]";
-//        DoorAccessManager.getInstance().startMCU(this,mcuConf.toJson(),buttonConf);
-
-//        MCUController mcuController = new MCUController(this);
-//        Bundle bundle = new Bundle();
-//        bundle.putString("serial", "/dev/ttyS0:115200");
-//        bundle.putString("security_bus_name", "@/tmp/securitybus");
-//        bundle.putString("watchdog", "60000:10000:1");
-//        String muc_conf = BundleToJSON.toString(bundle);
-//        String button_conf = "[{\"key\":5,\"id\":\"pickup\",\"long_pressed_time\":0,\"repeat_mini_time\":500,\"sound\":\"key\", \"action\":[{\"type\":2,\"event\":\"button:pickup\"}]},{\"key\":1,\"id\":\"unlock\",\"long_pressed_time\":0,\"repeat_mini_time\":500,\"sound\":\"key\",\"action\":[{\"type\":2,\"event\":\"button:unlock\"}]},{\"key\":4,\"id\":\"sos\",\"long_pressed_time\":0,\"repeat_mini_time\":500, \"sound\":\"key\",\"action\":[{\"type\":2,\"event\":\"button:sos\"}]},{\"key\":3,\"id\":\"monitor\",\"long_pressed_time\":0,\"repeat_mini_time\":500,\"sound\":\"key\", \"action\":[{\"type\":2,\"event\":\"button:monitor\"}]},{\"key\":2,\"id\":\"user\",\"long_pressed_time\":5000,\"repeat_mini_time\":500,\"sound\":\"key\",\"action\":[{\"type\":2,\"event\":\"button:user\"},{\"type\":3,\"event\":\"button:reset\"}]},{\"key\":6,\"id\":\"pad\",\"long_pressed_time\":0,\"repeat_mini_time\":0,\"sound\":\"\", \"action\":[{\"type\":1,\"event\":\"button:pad_near\"},{\"type\":2,\"event\":\"button:pad_leave\"}]},{\"key\":8,\"id\":\"volume+\",\"long_pressed_time\":0,\"repeat_mini_time\":500,\"sound\":\"key\", \"action\":[{\"type\":2,\"event\":\"button:volume+\"}]},{\"key\":7,\"id\":\"volume-\",\"long_pressed_time\":0,\"repeat_mini_time\":500,\"sound\":\"key\", \"action\":[{\"type\":2,\"event\":\"button:volume-\"}]}]";
-//        mcuController.start(muc_conf, button_conf);
     }
 
     @Override
     public void onCameraStateChanged(int a){
+
+    }
+
+//    @Override
+    public void onIntercomAppActivated(int errcode, String type, String message) {
 
     }
 
@@ -145,7 +229,8 @@ public class DoorAccessMainActivity extends AppCompatActivity implements
     }
 
     public void toPlayBack(View v){
-        startActivity(new Intent(this,DoorAccessPlayBackListActivity.class));
+//        startActivity(new Intent(this,DoorAccessPlayBackListActivity.class));
+        init();
     }
 
     public void toSecurity(View v){
@@ -162,6 +247,7 @@ public class DoorAccessMainActivity extends AppCompatActivity implements
             Toast.makeText(this,"请输入房号",Toast.LENGTH_SHORT).show();
             return;
         }
+//        String number = "912_01010102";
         String sessionId = DoorAccessManager.getInstance().monitorP2P(familyID,number);
         Intent intent = new Intent(this,DoorAccessVideoActivity.class);
         intent.putExtra("sessionId",sessionId);
@@ -174,6 +260,37 @@ public class DoorAccessMainActivity extends AppCompatActivity implements
             return;
         }
         startActivity(new Intent(this,DoorAccessExtActivity.class));
+    }
+
+    public void clearAllRecord(View v){
+        try {
+            DoorAccessManager.getInstance().deleteAllByType(familyID, DoorRecordBean.RECORD_TYPE_DOOR);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        deleteFile(new File(Environment.getExternalStorageDirectory(),"data/doorkeeper/access/record"));
+    }
+
+    private void deleteFile(File dir){
+        if(!dir.exists()){
+            return;
+        }
+        File[] listFile = dir.listFiles();
+        if(listFile == null || listFile.length == 0){
+            return;
+        }
+        for(File file : listFile){
+            if(file.isDirectory()){
+                deleteFile(file);
+            }else{
+                try {
+                    file.delete();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        dir.delete();
     }
 
     @Override
@@ -250,6 +367,7 @@ public class DoorAccessMainActivity extends AppCompatActivity implements
         Intent intent = new Intent(this,DoorAccessVideoActivity.class);
         intent.putExtra("sessionId",sessionId);
         startActivity(intent);
+//        DoorAccessManager.getInstance().openDoor(familyID,doorDevice.name);
     }
 
     @Override
@@ -312,4 +430,33 @@ public class DoorAccessMainActivity extends AppCompatActivity implements
         }
     }
 
+    private boolean requestPermission(){
+        int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
+        if(permission == PackageManager.PERMISSION_GRANTED){
+            return true;
+        }
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.RECORD_AUDIO,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_PHONE_STATE,
+                "android.permission.CHANGE_WIFI_MULTICAST_STATE"},0x1122);
+        return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int i, @NonNull String[] strings, @NonNull int[] ints) {
+        if(i != 0x1122){
+            return;
+        }
+        for(int k = 0 ; k < strings.length; k++){
+            if(ints[k] != PackageManager.PERMISSION_GRANTED){
+                android.util.Log.w("RequestPermission",strings[k] + " denied");
+            }else{
+                android.util.Log.w("RequestPermission",strings[k] + " granted");
+            }
+        }
+        super.onRequestPermissionsResult(i, strings, ints);
+        init();
+    }
 }

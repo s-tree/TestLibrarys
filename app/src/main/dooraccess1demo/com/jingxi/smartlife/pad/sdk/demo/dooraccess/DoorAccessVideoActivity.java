@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.intercom.sdk.IntercomConstants;
 import com.intercom.sdk.IntercomManager;
-import com.jingxi.smartlife.pad.sdk.JXPadSdk;
 import com.jingxi.smartlife.pad.sdk.demo.R;
 import com.jingxi.smartlife.pad.sdk.doorAccess.DoorAccessManager;
 import com.jingxi.smartlife.pad.sdk.doorAccess.base.bean.DoorEvent;
@@ -26,10 +25,11 @@ import java.io.File;
  */
 public class DoorAccessVideoActivity extends AppCompatActivity implements
         SurfaceHolder.Callback,DoorAccessConversationUI ,View.OnClickListener{
-    SurfaceView surfaceView;
+    SurfaceView surfaceView,localSurface;
     DoorAccessManager manager;
     String sessionId;
     Button bt_record;
+    private String cameraName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,12 +38,30 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
         surfaceView = (SurfaceView) findViewById(R.id.surface);
         surfaceView.getHolder().addCallback(this);
 
-        manager = JXPadSdk.getDoorAccessManager();
+        localSurface = findViewById(R.id.localSurface);
+        localSurface.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                DoorAccessManager.getInstance().updatePreviewWindow(localSurface);
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                DoorAccessManager.getInstance().updatePreviewWindow(null);
+            }
+        });
+
+        manager = DoorAccessManager.getInstance();
         manager.addConversationUIListener(this);
 
         sessionId = getIntent().getStringExtra("sessionId");
-        bt_record = (Button) findViewById(R.id.bt_record);
-        bt_record.setOnClickListener(this);
+
+        cameraName = IntercomConstants.kFrontCameraName;
     }
 
     @Override
@@ -53,6 +71,8 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
         if(!TextUtils.isEmpty(recordSession)){
             DoorAccessManager.getInstance().stopRecord(DoorAccessMainActivity.familyID,sessionId,recordSession);
         }
+        surfaceView.getHolder().removeCallback(this);
+        surfaceView = null;
     }
 
     @Override
@@ -72,9 +92,6 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
 
     public void accept(View v){
         manager.acceptCall(sessionId);
-//        sendAnswerMedia(sessionId,true);
-//        DoorAccessManager.getInstance().enableLocalToRemoteVideo(DoorAccessMainActivity.familyID,sessionId,false);
-//        DoorAccessManager.getInstance().enableLocalToRemoteAudio(DoorAccessMainActivity.familyID,sessionId,false);
     }
 
 
@@ -102,13 +119,41 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
     public void hangup(View v){
         manager.hangupCall(sessionId);
         finish();
+//        camera.stopPreview();
     }
 
     public void updateSurface(View v) {
         manager.updateCallWindow(sessionId, surfaceView);
+        Runtime.getRuntime().gc();
+    }
+
+    public void SwitchCamera(View v){
+        cameraName = TextUtils.equals(cameraName,IntercomConstants.kFrontCameraName)
+                ? IntercomConstants.kBackCameraName : IntercomConstants.kFrontCameraName;
+//        DoorAccessManager.getInstance().switchPreCamera(cameraName);
+    }
+
+    public void Record(View v){
+        if(TextUtils.isEmpty(recordSession)){
+            startRecord();
+        }else{
+            stopRecord();
+            recordSession = "";
+        }
+    }
+
+    public void SendCustomMessage(View v){
+//        DoorAccessManager.getInstance().sendMessage(DoorAccessMainActivity.familyID,sessionId,"Hello,nice to meet you");
     }
 
     @Override
+    public void startTransPort(String sessionID, int mediaType) {
+        Toast.makeText(this,"开始传输视频",Toast.LENGTH_SHORT).show();
+        DoorAccessManager.getInstance().enableLocalPlayer(DoorAccessMainActivity.familyID,sessionID,false);
+        DoorAccessManager.getInstance().enableLocalMic(DoorAccessMainActivity.familyID,sessionID,false);
+    }
+
+//    @Override
     public void startTransPort(String sessionID) {
         Toast.makeText(this,"开始传输视频",Toast.LENGTH_SHORT).show();
     }
@@ -128,6 +173,9 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
             Toast.makeText(this,"其他用户接听",Toast.LENGTH_SHORT).show();
             manager.hangupCall(sessionId);
             finish();
+        }
+        else if(TextUtils.equals(event.getCmd(),IntercomConstants.kIntercomCommandMessage)){
+            Toast.makeText(this,"[收到消息]" + event.message.getContent(),Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -150,18 +198,16 @@ public class DoorAccessVideoActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onStreamVideoTransportChanged(String sessionId, boolean enable) {
+
+    }
+
+    @Override
     public void onBackPressed() {
+        finish();
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.bt_record){
-            if(TextUtils.isEmpty(recordSession)){
-                startRecord();
-            }else{
-                stopRecord();
-                recordSession = "";
-            }
-        }
     }
 }

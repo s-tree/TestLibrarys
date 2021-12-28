@@ -94,7 +94,8 @@ public class DoorAccessExtActivity extends AppCompatActivity implements AdapterV
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         ExtDeviceBean extDeviceBean = extDeviceBeans.get(i);
-        String sessionID = DoorAccessManager.getInstance().callExt(DoorAccessMainActivity.familyID,extDeviceBean,true);
+//        String sessionID = DoorAccessManager.getInstance().callExt(DoorAccessMainActivity.familyID,extDeviceBean,true);
+        String sessionID = DoorAccessManager.getInstance().callExt(DoorAccessMainActivity.familyID,extDeviceBean,false);
         Intent intent = new Intent(this,DoorAccessVideoActivity.class);
         intent.putExtra("sessionId",sessionID);
         startActivity(intent);
@@ -144,6 +145,10 @@ public class DoorAccessExtActivity extends AppCompatActivity implements AdapterV
     }
 
     @Override
+    public void startTransPort(String sessionID, int mediaType) {
+
+    }
+
     public void startTransPort(String sessionID) {
 
     }
@@ -157,6 +162,10 @@ public class DoorAccessExtActivity extends AppCompatActivity implements AdapterV
         NetClient netClient = event.netClient;
         if(TextUtils.equals(event.getCmd(),IntercomConstants.kIntercomCommandPickup)){
             ExtDeviceBean extDeviceBean = getDevice(netClient);
+
+            if(extDeviceBean == null){
+                extDeviceBean = ExtDeviceBean.obtain(netClient);
+            }
 
             String showName = extDeviceBean.getShowName() ;
             String type = extDeviceBean.clientBean.getSub_type() == IntercomConstants.NetClientSubType.NetClientSubTypeEmbedded ? "底座" :
@@ -179,6 +188,11 @@ public class DoorAccessExtActivity extends AppCompatActivity implements AdapterV
     @Override
     public int inviteIntercept(DoorEvent inviteEvent) {
         return 0;
+    }
+
+    @Override
+    public void onStreamVideoTransportChanged(String sessionId, boolean enable) {
+
     }
 
     private ExtDeviceBean getDevice(NetClient netClient){

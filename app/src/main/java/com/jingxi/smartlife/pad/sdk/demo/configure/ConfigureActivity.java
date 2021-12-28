@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.intercom.base.Log;
 import com.jingxi.smartlife.pad.configure.ConfigureManager;
 import com.jingxi.smartlife.pad.configure.bean.CommunityInfo;
 import com.jingxi.smartlife.pad.configure.bean.IRoomBean;
@@ -51,7 +51,8 @@ public class ConfigureActivity extends AppCompatActivity implements View.OnClick
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ConfigureManager.initConfigure(this);
 //        ConfigureManager.setServerIp("192.168.125.243:8090");
-        ConfigureManager.setServerIp("192.168.125.243:8089");
+//        ConfigureManager.setServerIp("192.168.125.243:8089");
+        ConfigureManager.setServerIp("58.221.205.10:8089");
     }
 
     private void setData(List<RoomBean> roomBeans){
