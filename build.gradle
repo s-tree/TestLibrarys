@@ -3,13 +3,14 @@
 buildscript {
     
     repositories {
-        maven { url "https://maven.google.com"}
-        maven { url "https://dl.google.com/dl/android/maven2/"}
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url "http://10.10.5.209:8081/repository/maven-releases/" }
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
-
+//        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:4.2.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -18,14 +19,15 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "https://maven.google.com"}
-        maven { url "https://dl.google.com/dl/android/maven2/"}
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         jcenter()
         maven {
             url {"http://maven.aliyun.com/nexus/content/repositories/releases"}
         }
-        maven { url "https://raw.githubusercontent.com/s-tree/JxRepository/master/releases/"}
-//        maven { url "http://192.168.125.229:8081/nexus/content/repositories/releases" }
+        //https://gitee.com/s_tree/JxRepository/raw/master/releases/com/jingxi/smartlife/pad/sdk/doorAccess2/1.1.57.74358/doorAccess2-1.1.57.74358-sources.jar
+//        maven { url "https://raw.githubusercontent.com/s-tree/JxRepository/master/releases/"}
+        maven { url "http://10.10.5.209:8081/repository/maven-releases/" }
 
     }
 }

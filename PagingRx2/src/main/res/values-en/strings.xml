@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JXSocketClient</string>
+    <string name="paging_loading">Loading</string>
+    <string name="paging_no_more">No more</string>
+</resources>
